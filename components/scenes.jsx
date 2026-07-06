@@ -390,17 +390,19 @@ function Scene12() {
       </motion.h1>
       <div className="chaosField stormField">
         {stormWords.map(({ word, focus }, index) => {
+          const normalized = index / Math.max(stormWords.length - 1, 1);
+          const anchor = index < 18;
           const left = ((index * 17) % 126) - 13;
           const top = ((index * 29) % 122) - 11;
           const depth = index % 28;
-          const size = focus ? 2.2 + ((index * 5) % 9) / 10 : 1.05 + ((index * 7) % 18) / 10;
-          const enterDelay = 0.12 + Math.sqrt(index) * 0.52;
-          const burstDuration = Math.max(0.22, 1.24 - index * 0.006);
-          const driftX = ((index % 2 ? -1 : 1) * (120 + index * 13)) % 520;
-          const driftY = ((index % 3 ? 1 : -1) * (90 + index * 11)) % 380;
+          const size = focus ? 2.1 + ((index * 5) % 9) / 10 : 1.05 + ((index * 7) % 18) / 10;
+          const enterDelay = 0.16 + Math.pow(normalized, 0.48) * 5.25;
+          const fallDistance = -760 - ((index * 47) % 520);
+          const fallOffset = ((index % 2 ? -1 : 1) * (18 + (index % 9) * 10));
+          const settleDuration = Math.max(0.2, 0.9 - normalized * 0.58);
           return (
             <motion.span
-              className={focus ? "floatingWord stormWord focusWord" : "floatingWord stormWord"}
+              className={focus ? "floatingWord stormWord pileWord focusWord" : "floatingWord stormWord pileWord"}
               key={`${word}-${index}`}
               style={{
                 left: `${left}%`,
@@ -409,16 +411,22 @@ function Scene12() {
                 fontSize: `${size}rem`,
                 rotate: `${((index * 11) % 28) - 14}deg`
               }}
-              initial={{ opacity: 0, scale: 0.62, filter: "blur(20px)" }}
+              initial={{
+                opacity: 0,
+                x: anchor ? 0 : fallOffset,
+                y: anchor ? 26 : fallDistance,
+                scale: anchor ? 0.84 : 1.24,
+                filter: "blur(18px)"
+              }}
               animate={{
-                opacity: focus ? [0, 0.9, 0.28, 1, 0] : [0, 0.72, 0.18, 0.86, 0],
-                x: [driftX * -0.18, 0, driftX * 0.38, driftX * -0.22, driftX],
-                y: [driftY * 0.12, 0, driftY * -0.34, driftY * 0.26, driftY],
-                scale: focus ? [0.72, 1.08, 1.24, 1.7, 2.4] : [0.62, 1, 1.22, 1.58, 2.2],
-                filter: ["blur(18px)", "blur(0px)", "blur(2px)", "blur(0px)", "blur(14px)"]
+                opacity: focus ? 0.98 : 0.82,
+                x: 0,
+                y: 0,
+                scale: focus ? 1.08 : 1,
+                filter: "blur(0px)"
               }}
               transition={{
-                duration: burstDuration,
+                duration: settleDuration,
                 delay: enterDelay,
                 ease: [0.16, 1, 0.3, 1]
               }}
@@ -431,8 +439,8 @@ function Scene12() {
       <motion.div
         className="stormWhiteout"
         initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 0, 0.2, 1] }}
-        transition={{ duration: 7.1, times: [0, 0.68, 0.84, 1], ease }}
+        animate={{ opacity: [0, 0, 0.18, 1] }}
+        transition={{ duration: 7.4, times: [0, 0.62, 0.82, 1], ease }}
       />
     </SceneShell>
   );
@@ -640,17 +648,19 @@ const intelligenceItems = [
 function Scene25() {
   return (
     <SceneShell className="intelligenceScene">
-      <Title>Inteligência Unike</Title>
-      <Subtitle delay={0.18}>Como usamos IA hoje a nosso favor.</Subtitle>
-      <div className="assetGrid">
-        <AssetSlot className="primarySlot" asset={presentationAssets.scene25.primary} />
-        <div className="intelligenceList">
+      <div className="intelligenceHeader">
+        <Title>Inteligência Unike</Title>
+        <Subtitle delay={0.18}>Como usamos IA hoje a nosso favor.</Subtitle>
+      </div>
+      <div className="liveCrmStage">
+        <AssetSlot className="primarySlot liveCrmWindow" asset={presentationAssets.scene25.primary} />
+        <div className="liveCrmPills">
           {intelligenceItems.map((item, index) => (
             <motion.div
               key={item}
               className="intelligenceItem"
-              initial={{ opacity: 0, x: 24, filter: "blur(10px)" }}
-              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 16, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.58, delay: 0.28 + index * 0.06, ease }}
             >
               <Sparkles size={16} strokeWidth={1.5} />
@@ -772,7 +782,7 @@ function Scene27() {
 function Scene28() {
   return (
     <SceneShell className="center stacked softWarmScene">
-      <Title>Menos tempo procurando informação.</Title>
+      <Title>Menos <span className="tempoHighlight">tempo</span> procurando informação.</Title>
       <Subtitle delay={0.2}>Mais tempo decidindo o que fazer com ela.</Subtitle>
     </SceneShell>
   );
@@ -898,11 +908,11 @@ function Scene30({ stage }) {
 function Scene31() {
   return (
     <SceneShell className="center stacked purpleScene">
-      <Title>Tempo para desenvolver creators.</Title>
-      <LineGroup
-        delay={0.2}
-        lines={["Tempo para apoiar colaboradores.", "Tempo para tomar decisões melhores."]}
-      />
+      <Title><span className="tempoHighlight">Tempo</span> para desenvolver creators.</Title>
+      <Subtitle delay={0.2}>
+        <p><span className="tempoHighlight">Tempo</span> para apoiar colaboradores.</p>
+        <p><span className="tempoHighlight">Tempo</span> para tomar decisões melhores.</p>
+      </Subtitle>
     </SceneShell>
   );
 }

@@ -8,6 +8,8 @@
   --hairline: rgba(255, 255, 255, 0.1);
   --cyan: #75e6ff;
   --gold: #e8c46d;
+  --gold-light: #f6df9a;
+  --violet: #8b5cff;
 }
 
 * {
@@ -224,10 +226,13 @@ button {
 }
 
 .why {
-  color: #fff;
+  color: var(--gold-light);
   font-size: clamp(6rem, 16vw, 18rem);
   font-weight: 700;
   line-height: 0.82;
+  text-shadow:
+    0 0 40px rgba(246, 223, 154, 0.24),
+    0 0 90px rgba(139, 92, 255, 0.16);
 }
 
 .timelineScene {
@@ -283,8 +288,8 @@ button {
 
 .stormScene {
   background:
-    linear-gradient(140deg, rgba(117, 230, 255, 0.06), transparent 32%),
-    linear-gradient(320deg, rgba(232, 196, 109, 0.055), transparent 34%),
+    linear-gradient(140deg, rgba(117, 230, 255, 0.08), transparent 34%),
+    linear-gradient(320deg, rgba(232, 196, 109, 0.075), transparent 36%),
     #050505;
 }
 
@@ -308,7 +313,7 @@ button {
 }
 
 .stormField {
-  inset: -18vh -18vw -20vh -18vw;
+  inset: -12vh -14vw -10vh -14vw;
   mask-image: none;
 }
 
@@ -340,6 +345,13 @@ button {
   text-transform: none;
 }
 
+.pileWord {
+  transform-origin: 50% 50%;
+  text-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.94),
+    0 0 20px rgba(255, 255, 255, 0.08);
+}
+
 .stormWord.focusWord {
   color: rgba(255, 255, 255, 0.96);
 }
@@ -354,8 +366,8 @@ button {
 
 .lightScene {
   background:
-    linear-gradient(155deg, rgba(130, 84, 255, 0.1), transparent 35%),
-    linear-gradient(28deg, rgba(232, 196, 109, 0.16), transparent 46%),
+    linear-gradient(155deg, rgba(130, 84, 255, 0.12), transparent 35%),
+    linear-gradient(28deg, rgba(232, 196, 109, 0.19), transparent 46%),
     #f7f6f1;
   color: #050505;
 }
@@ -445,42 +457,52 @@ button {
 
 .warmScene {
   background:
-    linear-gradient(180deg, rgba(232, 196, 109, 0.07), transparent 50%),
-    linear-gradient(115deg, rgba(130, 84, 255, 0.035), transparent 38%);
+    linear-gradient(180deg, rgba(232, 196, 109, 0.09), transparent 50%),
+    linear-gradient(115deg, rgba(130, 84, 255, 0.052), transparent 40%);
 }
 
 .aiScene {
   background:
-    linear-gradient(180deg, rgba(117, 230, 255, 0.075), transparent 52%),
-    linear-gradient(250deg, rgba(130, 84, 255, 0.045), transparent 42%);
+    linear-gradient(180deg, rgba(117, 230, 255, 0.105), transparent 54%),
+    linear-gradient(250deg, rgba(130, 84, 255, 0.065), transparent 44%);
 }
 
 .purpleScene {
   background:
-    linear-gradient(145deg, rgba(130, 84, 255, 0.09), transparent 46%),
-    linear-gradient(22deg, rgba(255, 255, 255, 0.035), transparent 45%);
+    linear-gradient(145deg, rgba(130, 84, 255, 0.125), transparent 48%),
+    linear-gradient(22deg, rgba(255, 255, 255, 0.052), transparent 45%);
 }
 
 .cyanScene {
   background:
-    linear-gradient(130deg, rgba(117, 230, 255, 0.085), transparent 42%),
-    linear-gradient(315deg, rgba(255, 255, 255, 0.03), transparent 52%);
+    linear-gradient(130deg, rgba(117, 230, 255, 0.12), transparent 44%),
+    linear-gradient(315deg, rgba(255, 255, 255, 0.05), transparent 54%);
 }
 
 .softWarmScene {
   background:
-    linear-gradient(160deg, rgba(232, 196, 109, 0.09), transparent 46%),
-    linear-gradient(315deg, rgba(130, 84, 255, 0.04), transparent 48%);
+    linear-gradient(160deg, rgba(232, 196, 109, 0.125), transparent 48%),
+    linear-gradient(315deg, rgba(130, 84, 255, 0.06), transparent 50%);
 }
 
 .intelligenceScene {
   flex-direction: column;
   justify-content: center;
-  gap: clamp(24px, 4vh, 48px);
+  gap: clamp(18px, 3vh, 34px);
 }
 
 .intelligenceScene .title {
-  font-size: clamp(3.8rem, 7.5vw, 9rem);
+  font-size: clamp(2.8rem, 5.6vw, 6.8rem);
+}
+
+.intelligenceHeader {
+  display: grid;
+  gap: 12px;
+  width: min(1180px, 92vw);
+}
+
+.intelligenceHeader .subtitle {
+  font-size: clamp(1.1rem, 1.65vw, 2rem);
 }
 
 .assetGrid {
@@ -489,6 +511,29 @@ button {
   gap: clamp(18px, 3vw, 42px);
   width: min(1180px, 100%);
   align-items: stretch;
+}
+
+.liveCrmStage {
+  display: grid;
+  gap: clamp(14px, 2vh, 22px);
+  width: min(1180px, 92vw);
+}
+
+.liveCrmWindow {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  max-height: min(620px, 64vh);
+  min-height: 0;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 36px 120px rgba(0, 0, 0, 0.48),
+    0 0 90px rgba(117, 230, 255, 0.12);
+}
+
+.liveCrmPills {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .assetSlot,
@@ -567,11 +612,19 @@ button {
   border: 1px solid rgba(117, 230, 255, 0.12);
   border-radius: 8px;
   color: rgba(255, 255, 255, 0.78);
-  background: rgba(117, 230, 255, 0.035);
+  background: rgba(117, 230, 255, 0.052);
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .intelligenceItem svg {
+  flex: 0 0 auto;
   color: var(--cyan);
+}
+
+.intelligenceItem span {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .crmScene {
@@ -649,12 +702,19 @@ button {
 }
 
 .tempoWord {
-  color: #fff;
+  color: var(--gold-light);
   font-size: clamp(6rem, 17vw, 20rem);
   font-weight: 720;
   line-height: 0.82;
   letter-spacing: 0.03em;
-  text-shadow: 0 0 50px rgba(232, 196, 109, 0.1);
+  text-shadow:
+    0 0 42px rgba(246, 223, 154, 0.24),
+    0 0 86px rgba(232, 196, 109, 0.14);
+}
+
+.tempoHighlight {
+  color: var(--gold-light);
+  text-shadow: 0 0 34px rgba(246, 223, 154, 0.18);
 }
 
 .tempoParticles {
@@ -677,12 +737,14 @@ button {
   inset: 0;
   display: grid;
   place-items: center;
-  color: rgba(255, 255, 255, 0.96);
+  color: var(--gold-light);
   font-size: clamp(5.8rem, 15vw, 18rem);
   font-weight: 720;
   line-height: 0.82;
   letter-spacing: 0.03em;
-  text-shadow: 0 0 50px rgba(232, 196, 109, 0.16);
+  text-shadow:
+    0 0 54px rgba(246, 223, 154, 0.28),
+    0 0 100px rgba(232, 196, 109, 0.14);
 }
 
 .tempoSubtitle {
@@ -692,6 +754,10 @@ button {
 
 .closingScene {
   gap: clamp(28px, 5vh, 56px);
+  background:
+    linear-gradient(180deg, rgba(130, 84, 255, 0.11), transparent 42%),
+    linear-gradient(140deg, rgba(117, 230, 255, 0.065), transparent 38%),
+    #050505;
 }
 
 .closingPhrase {
@@ -711,27 +777,34 @@ button {
 
 .finalLogoImage {
   display: block;
-  width: min(62vw, 760px);
-  max-height: 68vh;
+  width: min(58vw, 720px);
+  max-height: 62vh;
   object-fit: contain;
-  border-radius: 8px;
-  box-shadow:
-    0 0 90px rgba(130, 84, 255, 0.24),
-    0 0 180px rgba(255, 255, 255, 0.08);
+  border-radius: 0;
+  filter:
+    drop-shadow(0 0 34px rgba(130, 84, 255, 0.42))
+    drop-shadow(0 0 86px rgba(117, 230, 255, 0.16));
 }
 
 .finalLogoStack {
   display: grid;
   justify-items: center;
-  gap: clamp(16px, 3vh, 34px);
+  gap: clamp(4px, 1.2vh, 14px);
 }
 
 .finalSlogan {
   margin: 0;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: clamp(1.35rem, 2.25vw, 2.8rem);
-  font-weight: 440;
+  max-width: min(780px, 86vw);
+  color: rgba(246, 223, 154, 0.9);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 2.05vw, 2.7rem);
+  font-style: italic;
+  font-weight: 400;
   line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-shadow:
+    0 0 28px rgba(246, 223, 154, 0.16),
+    0 10px 42px rgba(0, 0, 0, 0.65);
 }
 
 .lightMode .iconButton,
@@ -960,6 +1033,27 @@ button {
 
   .primarySlot {
     min-height: 220px;
+  }
+
+  .liveCrmWindow {
+    aspect-ratio: 16 / 11;
+    max-height: 52vh;
+  }
+
+  .liveCrmPills {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .intelligenceItem {
+    min-height: 42px;
+  }
+
+  .finalLogoImage {
+    width: min(86vw, 520px);
+  }
+
+  .finalSlogan {
+    font-size: clamp(1.15rem, 5vw, 1.8rem);
   }
 
   .navButton {
