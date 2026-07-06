@@ -1,10 +1,18 @@
 export const presentationAssets = {
   scene25: {
-    primary: {
-      type: "videoThenImage",
-      src: "/prints/crm-opening-video.mp4",
-      posterSrc: "/prints/crm-dashboard-print.jpeg",
-      alt: "Abertura do CRM Unike"
+    tools: {
+      crm: {
+        type: "videoThenImage",
+        src: "/prints/crm-opening-video.mp4",
+        posterSrc: "/prints/crm-dashboard-print.jpeg",
+        alt: "Abertura do CRM Unike"
+      },
+      chatgpt: null,
+      internal: null,
+      automation: null,
+      data: null,
+      organization: null,
+      decision: null
     }
   },
   scene26: {

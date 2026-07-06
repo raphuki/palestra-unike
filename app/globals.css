@@ -288,9 +288,10 @@ button {
 
 .stormScene {
   background:
-    linear-gradient(140deg, rgba(117, 230, 255, 0.08), transparent 34%),
-    linear-gradient(320deg, rgba(232, 196, 109, 0.075), transparent 36%),
-    #050505;
+    radial-gradient(circle at 52% 45%, rgba(255, 255, 255, 0.09), transparent 44%),
+    linear-gradient(140deg, rgba(117, 230, 255, 0.055), transparent 38%),
+    linear-gradient(320deg, rgba(232, 196, 109, 0.052), transparent 40%),
+    #020202;
 }
 
 .chaosTitle {
@@ -313,43 +314,44 @@ button {
 }
 
 .stormField {
-  inset: -12vh -14vw -10vh -14vw;
+  inset: -18vh -18vw -18vh -18vw;
   mask-image: none;
 }
 
 .floatingWord {
   position: absolute;
   display: inline-block;
-  color: rgba(255, 255, 255, 0.66);
+  color: rgba(255, 255, 255, 0.72);
   font-weight: 620;
   line-height: 0.82;
   white-space: nowrap;
   text-shadow:
     0 10px 22px rgba(0, 0, 0, 0.92),
-    0 0 26px rgba(255, 255, 255, 0.05);
+    0 0 32px rgba(255, 255, 255, 0.08);
   mix-blend-mode: normal;
   will-change: transform, opacity, filter;
 }
 
 .focusWord {
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 255, 255, 0.96);
   font-weight: 720;
   text-shadow:
     0 16px 36px rgba(0, 0, 0, 0.95),
-    0 0 30px rgba(255, 255, 255, 0.08);
+    0 0 38px rgba(255, 255, 255, 0.12);
 }
 
 .stormWord {
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.8);
   line-height: 0.76;
   text-transform: none;
+  letter-spacing: -0.01em;
 }
 
 .pileWord {
   transform-origin: 50% 50%;
   text-shadow:
     0 12px 28px rgba(0, 0, 0, 0.94),
-    0 0 20px rgba(255, 255, 255, 0.08);
+    0 0 26px rgba(255, 255, 255, 0.1);
 }
 
 .stormWord.focusWord {
@@ -366,8 +368,8 @@ button {
 
 .lightScene {
   background:
-    linear-gradient(155deg, rgba(130, 84, 255, 0.12), transparent 35%),
-    linear-gradient(28deg, rgba(232, 196, 109, 0.19), transparent 46%),
+    linear-gradient(155deg, rgba(130, 84, 255, 0.138), transparent 40%),
+    linear-gradient(28deg, rgba(232, 196, 109, 0.219), transparent 53%),
     #f7f6f1;
   color: #050505;
 }
@@ -455,40 +457,60 @@ button {
   text-shadow: 0 0 38px rgba(232, 196, 109, 0.14);
 }
 
+.blueTitle {
+  color: var(--cyan);
+  text-shadow:
+    0 0 36px rgba(117, 230, 255, 0.22),
+    0 12px 60px rgba(0, 0, 0, 0.22);
+}
+
+.lightScene .blueTitle {
+  color: #0077b6;
+  text-shadow: 0 18px 64px rgba(0, 119, 182, 0.2);
+}
+
+.unikePurple {
+  color: var(--violet);
+  text-shadow:
+    0 0 38px rgba(139, 92, 255, 0.28),
+    0 12px 70px rgba(139, 92, 255, 0.16);
+}
+
 .warmScene {
   background:
-    linear-gradient(180deg, rgba(232, 196, 109, 0.09), transparent 50%),
-    linear-gradient(115deg, rgba(130, 84, 255, 0.052), transparent 40%);
+    linear-gradient(180deg, rgba(232, 196, 109, 0.104), transparent 58%),
+    linear-gradient(115deg, rgba(130, 84, 255, 0.06), transparent 46%);
 }
 
 .aiScene {
   background:
-    linear-gradient(180deg, rgba(117, 230, 255, 0.105), transparent 54%),
-    linear-gradient(250deg, rgba(130, 84, 255, 0.065), transparent 44%);
+    linear-gradient(180deg, rgba(117, 230, 255, 0.121), transparent 62%),
+    linear-gradient(250deg, rgba(130, 84, 255, 0.075), transparent 51%);
 }
 
 .purpleScene {
   background:
-    linear-gradient(145deg, rgba(130, 84, 255, 0.125), transparent 48%),
-    linear-gradient(22deg, rgba(255, 255, 255, 0.052), transparent 45%);
+    linear-gradient(145deg, rgba(130, 84, 255, 0.144), transparent 55%),
+    linear-gradient(22deg, rgba(255, 255, 255, 0.06), transparent 52%);
 }
 
 .cyanScene {
   background:
-    linear-gradient(130deg, rgba(117, 230, 255, 0.12), transparent 44%),
-    linear-gradient(315deg, rgba(255, 255, 255, 0.05), transparent 54%);
+    linear-gradient(130deg, rgba(117, 230, 255, 0.138), transparent 51%),
+    linear-gradient(315deg, rgba(255, 255, 255, 0.058), transparent 62%);
 }
 
 .softWarmScene {
   background:
-    linear-gradient(160deg, rgba(232, 196, 109, 0.125), transparent 48%),
-    linear-gradient(315deg, rgba(130, 84, 255, 0.06), transparent 50%);
+    linear-gradient(160deg, rgba(232, 196, 109, 0.144), transparent 55%),
+    linear-gradient(315deg, rgba(130, 84, 255, 0.069), transparent 58%);
 }
 
 .intelligenceScene {
   flex-direction: column;
   justify-content: center;
-  gap: clamp(18px, 3vh, 34px);
+  gap: clamp(16px, 2.6vh, 30px);
+  padding: clamp(22px, 3.3vw, 64px);
 }
 
 .intelligenceScene .title {
@@ -497,8 +519,8 @@ button {
 
 .intelligenceHeader {
   display: grid;
-  gap: 12px;
-  width: min(1180px, 92vw);
+  gap: 10px;
+  width: min(1600px, 94vw);
 }
 
 .intelligenceHeader .subtitle {
@@ -515,25 +537,30 @@ button {
 
 .liveCrmStage {
   display: grid;
-  gap: clamp(14px, 2vh, 22px);
-  width: min(1180px, 92vw);
+  grid-template-columns: minmax(0, 4fr) minmax(245px, 1fr);
+  gap: clamp(20px, 2.6vw, 42px);
+  width: min(1600px, 94vw);
+  height: min(710px, 66vh);
+  align-items: stretch;
 }
 
 .liveCrmWindow {
   width: 100%;
-  aspect-ratio: 16 / 10;
-  max-height: min(620px, 64vh);
+  height: 100%;
+  aspect-ratio: auto;
+  max-height: none;
   min-height: 0;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.14),
     0 36px 120px rgba(0, 0, 0, 0.48),
-    0 0 90px rgba(117, 230, 255, 0.12);
+    0 0 104px rgba(117, 230, 255, 0.138);
 }
 
 .liveCrmPills {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: 1fr;
+  gap: clamp(10px, 1.2vh, 14px);
+  align-content: center;
 }
 
 .assetSlot,
@@ -561,7 +588,8 @@ button {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background: #050505;
 }
 
 .assetSlot .slotMedia,
@@ -606,25 +634,91 @@ button {
 .intelligenceItem {
   display: flex;
   align-items: center;
-  gap: 12px;
-  min-height: 48px;
-  padding: 0 16px;
-  border: 1px solid rgba(117, 230, 255, 0.12);
+  gap: 14px;
+  width: 100%;
+  min-height: clamp(58px, 7vh, 78px);
+  padding: 0 clamp(16px, 1.35vw, 22px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
-  color: rgba(255, 255, 255, 0.78);
-  background: rgba(117, 230, 255, 0.052);
-  white-space: nowrap;
-  overflow: hidden;
+  color: rgba(255, 255, 255, 0.76);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.012)),
+    rgba(5, 5, 5, 0.38);
+  text-align: left;
+  white-space: normal;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 18px 52px rgba(0, 0, 0, 0.24);
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
 }
 
 .intelligenceItem svg {
   flex: 0 0 auto;
-  color: var(--cyan);
+  color: var(--violet);
 }
 
 .intelligenceItem span {
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
+  color: inherit;
+  font-size: clamp(0.92rem, 1.1vw, 1.16rem);
+  font-weight: 650;
+  line-height: 1.08;
+  text-overflow: clip;
+}
+
+.intelligenceItem:hover,
+.intelligenceItem.active {
+  color: #fff;
+  border-color: rgba(139, 92, 255, 0.72);
+  background:
+    linear-gradient(135deg, rgba(139, 92, 255, 0.18), rgba(255, 255, 255, 0.018)),
+    rgba(5, 5, 5, 0.54);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 22px 70px rgba(0, 0, 0, 0.3),
+    0 0 36px rgba(139, 92, 255, 0.16);
+}
+
+.intelligenceItem:hover {
+  transform: translateX(-2px);
+}
+
+.toolPlaceholder {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  padding: clamp(28px, 4vw, 70px);
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(139, 92, 255, 0.11), transparent 32%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.022) 0 1px, transparent 1px 32px),
+    #070707;
+}
+
+.toolPlaceholder svg {
+  color: var(--violet);
+  filter: drop-shadow(0 0 22px rgba(139, 92, 255, 0.34));
+}
+
+.toolPlaceholder strong {
+  color: #fff;
+  font-size: clamp(2.2rem, 4vw, 5.4rem);
+  font-weight: 650;
+  line-height: 0.95;
+}
+
+.toolPlaceholder span {
+  color: rgba(255, 255, 255, 0.44);
+  font-size: clamp(1rem, 1.35vw, 1.35rem);
+  font-weight: 450;
 }
 
 .crmScene {
@@ -1035,17 +1129,46 @@ button {
     min-height: 220px;
   }
 
+  .intelligenceScene {
+    justify-content: flex-start;
+    padding: 28px;
+  }
+
+  .intelligenceHeader {
+    width: 100%;
+  }
+
+  .intelligenceHeader .title {
+    font-size: clamp(2.6rem, 12vw, 4.8rem);
+  }
+
+  .liveCrmStage {
+    grid-template-columns: 1fr;
+    width: 100%;
+    height: auto;
+    gap: 14px;
+  }
+
   .liveCrmWindow {
-    aspect-ratio: 16 / 11;
-    max-height: 52vh;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    max-height: 46vh;
+    min-height: 220px;
   }
 
   .liveCrmPills {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
   }
 
   .intelligenceItem {
-    min-height: 42px;
+    min-height: 48px;
+    padding: 0 12px;
+    gap: 10px;
+  }
+
+  .intelligenceItem span {
+    font-size: 0.82rem;
   }
 
   .finalLogoImage {

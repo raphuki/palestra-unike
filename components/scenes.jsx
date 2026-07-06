@@ -1,7 +1,7 @@
 "use client";
 
-import { animate, motion, useMotionValue, useTransform } from "framer-motion";
-import { BrainCircuit, Database, Sparkles, UsersRound } from "lucide-react";
+import { AnimatePresence, animate, motion, useMotionValue, useTransform } from "framer-motion";
+import { BarChart3, Bot, BrainCircuit, Database, Folder, Monitor, Sparkles, UsersRound, Wrench, Zap } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { presentationAssets } from "./presentation-assets";
 
@@ -317,7 +317,7 @@ const chaosWords = [
   { word: "Decisão" }
 ];
 
-const stormWords = [
+const stormWordBank = [
   ...chaosWords,
   { word: "Dados", focus: true },
   { word: "IA", focus: true },
@@ -377,6 +377,15 @@ const stormWords = [
   { word: "Muita coisa", focus: true }
 ];
 
+const stormWords = Array.from({ length: 186 }, (_, index) => {
+  const source = stormWordBank[index % stormWordBank.length];
+  const emphasisWords = ["Diamantes", "Horas", "Campanhas", "Incentivos", "Humor", "Eventos", "Guifters"];
+  return {
+    ...source,
+    focus: source.focus || emphasisWords.includes(source.word) || index % 29 === 0
+  };
+});
+
 function Scene12() {
   return (
     <SceneShell className="chaosScene stormScene">
@@ -391,15 +400,18 @@ function Scene12() {
       <div className="chaosField stormField">
         {stormWords.map(({ word, focus }, index) => {
           const normalized = index / Math.max(stormWords.length - 1, 1);
-          const anchor = index < 18;
-          const left = ((index * 17) % 126) - 13;
-          const top = ((index * 29) % 122) - 11;
-          const depth = index % 28;
-          const size = focus ? 2.1 + ((index * 5) % 9) / 10 : 1.05 + ((index * 7) % 18) / 10;
-          const enterDelay = 0.16 + Math.pow(normalized, 0.48) * 5.25;
-          const fallDistance = -760 - ((index * 47) % 520);
-          const fallOffset = ((index % 2 ? -1 : 1) * (18 + (index % 9) * 10));
-          const settleDuration = Math.max(0.2, 0.9 - normalized * 0.58);
+          const anchor = index < 26;
+          const left = ((index * 31 + (index % 7) * 19) % 118) - 9;
+          const top = ((index * 37 + (index % 5) * 23) % 116) - 8;
+          const depth = index % 74;
+          const giant = focus && index % 3 !== 1;
+          const size = giant
+            ? 3.6 + ((index * 11) % 44) / 10
+            : 0.86 + ((index * 13) % 31) / 10;
+          const enterDelay = 0.12 + Math.pow(normalized, 0.36) * 6.2;
+          const fallDistance = -900 - ((index * 43) % 680);
+          const fallOffset = ((index % 2 ? -1 : 1) * (28 + (index % 13) * 16));
+          const settleDuration = Math.max(0.14, 0.96 - normalized * 0.72);
           return (
             <motion.span
               className={focus ? "floatingWord stormWord pileWord focusWord" : "floatingWord stormWord pileWord"}
@@ -409,20 +421,20 @@ function Scene12() {
                 top: `${top}%`,
                 zIndex: 10 + depth,
                 fontSize: `${size}rem`,
-                rotate: `${((index * 11) % 28) - 14}deg`
+                rotate: `${((index * 17) % 34) - 17}deg`
               }}
               initial={{
                 opacity: 0,
                 x: anchor ? 0 : fallOffset,
                 y: anchor ? 26 : fallDistance,
-                scale: anchor ? 0.84 : 1.24,
+                scale: anchor ? 0.72 : 1.34,
                 filter: "blur(18px)"
               }}
               animate={{
-                opacity: focus ? 0.98 : 0.82,
+                opacity: focus ? 0.98 : 0.88,
                 x: 0,
                 y: 0,
-                scale: focus ? 1.08 : 1,
+                scale: focus ? 1.06 : 1,
                 filter: "blur(0px)"
               }}
               transition={{
@@ -439,8 +451,8 @@ function Scene12() {
       <motion.div
         className="stormWhiteout"
         initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 0, 0.18, 1] }}
-        transition={{ duration: 7.4, times: [0, 0.62, 0.82, 1], ease }}
+        animate={{ opacity: [0, 0, 0.12, 0.58, 1] }}
+        transition={{ duration: 9.2, times: [0, 0.68, 0.82, 0.94, 1], ease }}
       />
     </SceneShell>
   );
@@ -458,7 +470,7 @@ function Scene13() {
 function Scene14() {
   return (
     <SceneShell className="center stacked lightScene">
-      <Title>Dado não é só número.</Title>
+      <Title className="blueTitle">Dado não é só número.</Title>
       <Subtitle delay={0.2}>Dado é qualquer informação que ajuda a decidir melhor.</Subtitle>
     </SceneShell>
   );
@@ -532,7 +544,7 @@ function Scene16() {
 function Scene17() {
   return (
     <SceneShell className="center stacked purpleScene">
-      <Title>E dados também são Estratégicos.</Title>
+      <Title className="blueTitle">E dados também são Estratégicos.</Title>
       <LineGroup
         delay={0.2}
         lines={[
@@ -547,7 +559,7 @@ function Scene17() {
 function Scene18() {
   return (
     <SceneShell className="center stacked cyanScene">
-      <Title>A filosofia da Unike</Title>
+      <Title>A filosofia da <span className="unikePurple">Unike</span></Title>
       <LineGroup
         delay={0.2}
         lines={[
@@ -635,37 +647,48 @@ function Scene24() {
   );
 }
 
-const intelligenceItems = [
-  "CRM Unike",
-  "ChatGPT",
-  "Ferramentas internas",
-  "Automações",
-  "Análise de dados",
-  "Organização de informações",
-  "Apoio à tomada de decisão"
+const intelligenceTools = [
+  { key: "crm", label: "CRM Unike", icon: Monitor },
+  { key: "chatgpt", label: "ChatGPT", icon: Bot },
+  { key: "internal", label: "Ferramentas Internas", icon: Wrench },
+  { key: "automation", label: "Automações", icon: Zap },
+  { key: "data", label: "Análise de Dados", icon: BarChart3 },
+  { key: "organization", label: "Organização", icon: Folder },
+  { key: "decision", label: "Apoio à decisão", icon: UsersRound }
 ];
 
 function Scene25() {
+  const [activeTool, setActiveTool] = useState(intelligenceTools[0]);
+  const activeAsset = presentationAssets.scene25.tools?.[activeTool.key] ?? null;
+
   return (
     <SceneShell className="intelligenceScene">
       <div className="intelligenceHeader">
         <Title>Inteligência Unike</Title>
         <Subtitle delay={0.18}>Como usamos IA hoje a nosso favor.</Subtitle>
       </div>
-      <div className="liveCrmStage">
-        <AssetSlot className="primarySlot liveCrmWindow" asset={presentationAssets.scene25.primary} />
-        <div className="liveCrmPills">
-          {intelligenceItems.map((item, index) => (
-            <motion.div
-              key={item}
-              className="intelligenceItem"
+      <div className="liveCrmStage" data-ui>
+        <AssetSlot
+          key={activeTool.key}
+          className="primarySlot liveCrmWindow softwareWindow"
+          asset={activeAsset}
+          forceWindow
+          label={activeTool.label}
+        />
+        <div className="liveCrmPills" aria-label="Ferramentas da Inteligência Unike">
+          {intelligenceTools.map(({ key, label, icon: Icon }, index) => (
+            <motion.button
+              key={key}
+              type="button"
+              className={key === activeTool.key ? "intelligenceItem active" : "intelligenceItem"}
+              onClick={() => setActiveTool(intelligenceTools[index])}
               initial={{ opacity: 0, y: 16, filter: "blur(10px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.58, delay: 0.28 + index * 0.06, ease }}
             >
-              <Sparkles size={16} strokeWidth={1.5} />
-              <span>{item}</span>
-            </motion.div>
+              <Icon size={20} strokeWidth={1.5} />
+              <span>{label}</span>
+            </motion.button>
           ))}
         </div>
       </div>
@@ -673,8 +696,8 @@ function Scene25() {
   );
 }
 
-function AssetSlot({ asset, className = "" }) {
-  const hasWindow = asset?.type === "video" || asset?.type === "videoThenImage";
+function AssetSlot({ asset, className = "", forceWindow = false, label = "" }) {
+  const hasWindow = forceWindow || asset?.type === "video" || asset?.type === "videoThenImage";
   return (
     <div className={`assetSlot ${hasWindow ? "videoSlot" : ""} ${className}`}>
       {hasWindow ? (
@@ -684,40 +707,70 @@ function AssetSlot({ asset, className = "" }) {
           <span />
         </div>
       ) : null}
-      <MediaAsset asset={asset} />
+      <MediaAsset asset={asset} label={label} />
     </div>
   );
 }
 
-function MediaAsset({ asset }) {
+function MediaAsset({ asset, label = "" }) {
   const [showFallback, setShowFallback] = useState(false);
 
   useEffect(() => {
     setShowFallback(false);
   }, [asset?.src]);
 
-  if (!asset) return null;
-  if (asset.type === "videoThenImage") {
-    if (showFallback) {
-      return <img className="slotMedia" src={asset.posterSrc} alt={asset.alt} />;
-    }
-
+  if (!asset) {
     return (
-      <video
-        className="slotMedia"
-        src={asset.src}
-        aria-label={asset.alt}
-        autoPlay
-        muted
-        playsInline
-        onEnded={() => setShowFallback(true)}
-      />
+      <motion.div
+        className="toolPlaceholder"
+        initial={{ opacity: 0, scale: 0.985, filter: "blur(12px)" }}
+        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.55, ease }}
+      >
+        <Sparkles size={34} strokeWidth={1.25} />
+        <strong>{label}</strong>
+        <span>Espaço preparado para print real.</span>
+      </motion.div>
+    );
+  }
+
+  if (asset.type === "videoThenImage") {
+    return (
+      <AnimatePresence mode="wait">
+        {showFallback ? (
+          <motion.img
+            key={`${asset.posterSrc}-poster`}
+            className="slotMedia"
+            src={asset.posterSrc}
+            alt={asset.alt}
+            initial={{ opacity: 0, filter: "blur(8px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, filter: "blur(8px)" }}
+            transition={{ duration: 0.5, ease }}
+          />
+        ) : (
+          <motion.video
+            key={`${asset.src}-video`}
+            className="slotMedia"
+            src={asset.src}
+            aria-label={asset.alt}
+            autoPlay
+            muted
+            playsInline
+            initial={{ opacity: 0, filter: "blur(8px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, filter: "blur(8px)" }}
+            transition={{ duration: 0.5, ease }}
+            onEnded={() => setShowFallback(true)}
+          />
+        )}
+      </AnimatePresence>
     );
   }
 
   if (asset.type === "video") {
     return (
-      <video
+      <motion.video
         className="slotMedia"
         src={asset.src}
         aria-label={asset.alt}
@@ -725,11 +778,23 @@ function MediaAsset({ asset }) {
         muted
         loop
         playsInline
+        initial={{ opacity: 0, filter: "blur(8px)" }}
+        animate={{ opacity: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.5, ease }}
       />
     );
   }
 
-  return <img className="slotMedia" src={asset.src} alt={asset.alt} />;
+  return (
+    <motion.img
+      className="slotMedia"
+      src={asset.src}
+      alt={asset.alt}
+      initial={{ opacity: 0, filter: "blur(8px)" }}
+      animate={{ opacity: 1, filter: "blur(0px)" }}
+      transition={{ duration: 0.5, ease }}
+    />
+  );
 }
 
 function Scene26() {
