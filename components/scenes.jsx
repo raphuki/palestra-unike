@@ -3,6 +3,7 @@
 import { AnimatePresence, animate, motion, useMotionValue, useTransform } from "framer-motion";
 import { BarChart3, Bot, BrainCircuit, Database, Monitor, Sparkles, UsersRound, Wrench, Zap } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { stormWords as premiumStormWords } from "./chaos-words";
 import { presentationAssets } from "./presentation-assets";
 
 const ease = [0.22, 1, 0.36, 1];
@@ -405,48 +406,65 @@ function Scene12({ stage }) {
   return (
     <SceneShell className="chaosScene stormScene">
       <div className="chaosField stormField">
-        {stormWords.map(({ word, focus }, index) => {
-          const normalized = index / Math.max(stormWords.length - 1, 1);
-          const anchor = index < 18;
-          const left = ((index * 31 + (index % 11) * 23) % 130) - 15;
-          const top = ((index * 37 + (index % 9) * 29) % 128) - 14;
-          const depth = index % 120;
-          const giant = focus && index % 4 !== 1;
-          const size = giant
-            ? 4.2 + ((index * 11) % 58) / 10
-            : 0.9 + ((index * 13) % 37) / 10;
-          const enterDelay = 0.2 + (1 - Math.pow(1 - normalized, 2.85)) * 10.15;
-          const fallDistance = -1080 - ((index * 43) % 820);
-          const fallOffset = ((index % 2 ? -1 : 1) * (34 + (index % 17) * 18));
-          const settleDuration = Math.max(0.12, 0.92 - normalized * 0.7);
+        {premiumStormWords.map(({ word, focus, mega, category, lateral }, index) => {
+          const normalized = index / Math.max(premiumStormWords.length - 1, 1);
+          const left = ((index * 47 + (index % 19) * 29) % 148) - 24;
+          const top = ((index * 59 + (index % 13) * 31) % 140) - 20;
+          const depth = 10 + ((index * 37) % 260);
+          const size = mega
+            ? 8.6 + ((index * 13) % 64) / 10
+            : focus
+              ? 4.6 + ((index * 11) % 54) / 10
+              : 0.66 + ((index * 17) % 42) / 10;
+          const fromLeft = index % 10 < 5;
+          const sideX = fromLeft ? -1500 - (index % 9) * 180 : 1500 + (index % 9) * 180;
+          const topY = -1160 - ((index * 43) % 900);
+          const bottomY = 860 + ((index * 31) % 540);
+          const entryX = lateral ? sideX : ((index % 2 ? -1 : 1) * (80 + (index % 21) * 24));
+          const entryY = lateral ? ((index % 3) - 1) * (220 + (index % 7) * 42) : (index % 6 === 0 ? bottomY : topY);
+          const crossX = lateral ? -sideX * (0.12 + (index % 5) * 0.035) : ((index % 3) - 1) * (240 + (index % 11) * 44);
+          const crossY = lateral ? ((index % 2 ? -1 : 1) * (190 + (index % 12) * 38)) : ((index % 4) - 1.5) * (150 + (index % 9) * 32);
+          const finalScale = mega ? 1.08 : focus ? 1.04 : 1;
+          const midScale = mega ? 1.26 : focus ? 1.18 : 1.08;
+          const enterDelay = 0.1 + (1 - Math.pow(1 - normalized, 2.55)) * 10.55 + (index % 9) * 0.035;
+          const settleDuration = 0.36 + (index % 17) * 0.075 + (lateral ? 0.55 : 0) + (mega ? 0.35 : 0);
           return (
             <motion.span
-              className={focus ? "floatingWord stormWord pileWord focusWord" : "floatingWord stormWord pileWord"}
+              className={[
+                "floatingWord",
+                "stormWord",
+                "pileWord",
+                category,
+                focus ? "focusWord" : "",
+                mega ? "megaWord" : "",
+                lateral ? "lateralWord" : ""
+              ].filter(Boolean).join(" ")}
               key={`${word}-${index}`}
               style={{
                 left: `${left}%`,
                 top: `${top}%`,
-                zIndex: 10 + depth,
+                zIndex: depth,
                 fontSize: `${size}rem`,
-                rotate: `${((index * 17) % 34) - 17}deg`
+                rotate: `${((index * 23) % 44) - 22}deg`
               }}
               initial={{
                 opacity: 0,
-                x: anchor ? 0 : fallOffset,
-                y: anchor ? 26 : fallDistance,
-                scale: anchor ? 0.72 : 1.34,
-                filter: "blur(18px)"
+                x: entryX,
+                y: entryY,
+                scale: mega ? 1.62 : 1.24,
+                filter: "blur(24px)"
               }}
               animate={{
-                opacity: focus ? 0.98 : 0.88,
-                x: 0,
-                y: 0,
-                scale: focus ? 1.06 : 1,
-                filter: "blur(0px)"
+                opacity: [0, focus ? 0.98 : 0.78, focus ? 0.98 : 0.86],
+                x: [entryX, crossX, 0],
+                y: [entryY, crossY, 0],
+                scale: [mega ? 1.62 : 1.24, midScale, finalScale],
+                filter: ["blur(24px)", "blur(3px)", "blur(0px)"]
               }}
               transition={{
                 duration: settleDuration,
                 delay: enterDelay,
+                times: [0, 0.58, 1],
                 ease: [0.16, 1, 0.3, 1]
               }}
             >
@@ -1022,7 +1040,7 @@ function Scene33({ stage }) {
           exit={{ opacity: 0, y: 18, filter: "blur(18px)" }}
           transition={{ duration: 0.9, delay: 0.32, ease }}
         >
-          Porque, no fim, tecnologia evolui. Os dados mudam. O mercado muda. Mas o futuro sempre será construído pelas pessoas que escolhem tomar decisões melhores.
+          Porque, no fim, tecnologia evolui. Os dados mudam. O mercado muda. Mas o futuro deve ser construído pelas pessoas que escolhem tomar decisões melhores.
         </motion.p>
       ) : (
         <div className="finalLogoStack">

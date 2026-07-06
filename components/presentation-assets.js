@@ -4,7 +4,7 @@ export const presentationAssets = {
       crm: {
         type: "videoThenImage",
         src: "/prints/crm-opening-video.mp4",
-        posterSrc: "/prints/crm-dashboard-print.jpeg",
+        posterSrc: "/prints/crm-dashboard-print.png",
         alt: "Abertura do CRM Unike"
       },
       chatgpt: null,
