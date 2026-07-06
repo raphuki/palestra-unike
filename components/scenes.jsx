@@ -69,7 +69,8 @@ function LineGroup({ lines, delay = 0.18, className = "" }) {
 
 function Scene1() {
   return (
-    <SceneShell className="center">
+    <SceneShell className="center stacked warmScene openingScene">
+      <Eyebrow>Entrada Raphael</Eyebrow>
       <motion.h1
         className="unikeMark"
         initial={{ opacity: 0, scale: 0.94, filter: "blur(18px)" }}
@@ -246,27 +247,74 @@ function Scene11() {
 }
 
 const chaosWords = [
-  "Horas de live",
-  "Diamantes",
-  "Retenção",
-  "Liga",
-  "Eventos",
-  "Power Ups",
-  "Co-host",
-  "Metas",
-  "Ranking",
-  "Creators",
-  "Recrutamento",
-  "Atendimento",
-  "Colaboradores",
-  "Campanhas",
-  "TikTok",
-  "Pagamentos",
-  "Frequência",
-  "Oportunidades",
-  "Risco",
-  "Evolução",
-  "Desenvolvimento"
+  { word: "Diamantes", focus: true },
+  { word: "Horas", focus: true },
+  { word: "Campanhas", focus: true },
+  { word: "Incentivos", focus: true },
+  { word: "Humor", focus: true },
+  { word: "Eventos", focus: true },
+  { word: "Guifters", focus: true },
+  { word: "Horas de live", focus: true },
+  { word: "Diamantes", focus: true },
+  { word: "Campanhas", focus: true },
+  { word: "Eventos", focus: true },
+  { word: "Incentivos", focus: true },
+  { word: "Humor", focus: true },
+  { word: "Guifters", focus: true },
+  { word: "Retenção" },
+  { word: "Liga" },
+  { word: "Power Ups" },
+  { word: "Co-host" },
+  { word: "Metas" },
+  { word: "Ranking" },
+  { word: "Creators" },
+  { word: "Recrutamento" },
+  { word: "Atendimento" },
+  { word: "Colaboradores" },
+  { word: "TikTok" },
+  { word: "Pagamentos" },
+  { word: "Frequência" },
+  { word: "Oportunidades" },
+  { word: "Risco" },
+  { word: "Evolução" },
+  { word: "Desenvolvimento" },
+  { word: "Turnover" },
+  { word: "Metas semanais" },
+  { word: "Tabela" },
+  { word: "Bônus" },
+  { word: "Missões" },
+  { word: "Lives" },
+  { word: "Top creators" },
+  { word: "Quedas" },
+  { word: "Respostas" },
+  { word: "Mensagens" },
+  { word: "Onboarding" },
+  { word: "Performance" },
+  { word: "Sinais" },
+  { word: "Atrasos" },
+  { word: "Engajamento" },
+  { word: "Comunidade" },
+  { word: "Agenda" },
+  { word: "Rotina" },
+  { word: "Alertas" },
+  { word: "Relatórios" },
+  { word: "Análise" },
+  { word: "Qualidade" },
+  { word: "Crescimento" },
+  { word: "Queda brusca" },
+  { word: "Potencial" },
+  { word: "Prioridade" },
+  { word: "Saturação" },
+  { word: "Histórico" },
+  { word: "Conversas" },
+  { word: "Feedback" },
+  { word: "Conteúdo" },
+  { word: "Alcance" },
+  { word: "Timing" },
+  { word: "Operação" },
+  { word: "Escala" },
+  { word: "Sinal fraco" },
+  { word: "Decisão" }
 ];
 
 function Scene12() {
@@ -274,32 +322,37 @@ function Scene12() {
     <SceneShell className="chaosScene">
       <Title className="chaosTitle">O caos dos dados</Title>
       <div className="chaosField">
-        {chaosWords.map((word, index) => {
-          const left = (index * 37) % 92;
-          const top = (index * 23) % 82;
-          const depth = index % 5;
-          const size = 0.72 + ((index * 7) % 8) / 10;
+        {chaosWords.map(({ word, focus }, index) => {
+          const left = ((index * 19) % 118) - 9;
+          const top = ((index * 31) % 108) - 9;
+          const depth = index % 16;
+          const size = focus ? 1.85 + ((index * 5) % 8) / 10 : 0.9 + ((index * 7) % 13) / 10;
+          const driftX = ((index % 2 ? -1 : 1) * (80 + index * 9)) % 320;
+          const driftY = ((index % 3 ? 1 : -1) * (58 + index * 7)) % 250;
           return (
             <motion.span
-              className="floatingWord"
-              key={word}
+              className={focus ? "floatingWord focusWord" : "floatingWord"}
+              key={`${word}-${index}`}
               style={{
                 left: `${left}%`,
                 top: `${top}%`,
                 zIndex: 10 + depth,
-                fontSize: `clamp(${1.1 * size}rem, ${2.2 * size}vw, ${3.6 * size}rem)`
+                fontSize: `clamp(${1.05 * size}rem, ${2.05 * size}vw, ${3.8 * size}rem)`,
+                rotate: `${((index * 11) % 28) - 14}deg`
               }}
               initial={{ opacity: 0, scale: 0.9, filter: "blur(12px)" }}
               animate={{
-                opacity: [0.28, 0.86, 0.42],
-                x: [0, ((index % 2 ? -1 : 1) * (36 + index * 2)) % 140, 0],
-                y: [0, ((index % 3 ? 1 : -1) * (28 + index * 3)) % 130, 0],
-                scale: [1, 1 + (depth * 0.035), 1],
-                filter: ["blur(0px)", "blur(0px)", "blur(1.5px)"]
+                opacity: focus ? [0.42, 0.96, 0.22, 0.82] : [0.18, 0.7, 0.12, 0.5],
+                x: [0, driftX, driftX * -0.45, 0],
+                y: [0, driftY, driftY * -0.6, 0],
+                scale: focus ? [1.06, 1.22, 0.98, 1.12] : [0.94, 1.12, 0.9, 1.02],
+                filter: focus
+                  ? ["blur(0px)", "blur(0px)", "blur(5px)", "blur(1px)"]
+                  : ["blur(1px)", "blur(0px)", "blur(6px)", "blur(2px)"]
               }}
               transition={{
-                duration: 8 + (index % 7) * 1.6,
-                delay: index * 0.08,
+                duration: 5.4 + (index % 9) * 0.8,
+                delay: index * 0.035,
                 repeat: Infinity,
                 repeatType: "mirror",
                 ease: "easeInOut"
@@ -497,7 +550,6 @@ function Scene23() {
 function Scene24() {
   return (
     <SceneShell className="center stacked aiScene">
-      <Eyebrow>Volta Raphael</Eyebrow>
       <Title>Foi aí que a IA entrou.</Title>
       <LineGroup delay={0.2} lines={["Não para substituir pessoas.", "Para acelerar decisões."]} />
     </SceneShell>
@@ -542,10 +594,36 @@ function Scene25() {
 
 function AssetSlot({ asset, className = "" }) {
   return (
-    <div className={`assetSlot ${className}`}>
-      {asset ? <img src={asset.src} alt={asset.alt} /> : null}
+    <div className={`assetSlot ${asset?.type === "video" ? "videoSlot" : ""} ${className}`}>
+      {asset?.type === "video" ? (
+        <div className="windowBar" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+      ) : null}
+      <MediaAsset asset={asset} />
     </div>
   );
+}
+
+function MediaAsset({ asset }) {
+  if (!asset) return null;
+  if (asset.type === "video") {
+    return (
+      <video
+        className="slotMedia"
+        src={asset.src}
+        aria-label={asset.alt}
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+    );
+  }
+
+  return <img className="slotMedia" src={asset.src} alt={asset.alt} />;
 }
 
 function Scene26() {
@@ -558,9 +636,12 @@ function Scene26() {
           animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.75, ease }}
         >
-          {presentationAssets.scene26.large ? (
-            <img src={presentationAssets.scene26.large.src} alt={presentationAssets.scene26.large.alt} />
-          ) : null}
+          <div className="windowBar" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </div>
+          <MediaAsset asset={presentationAssets.scene26.large} />
         </motion.div>
         <motion.div
           className="crmScreen mediumScreen"
@@ -568,9 +649,7 @@ function Scene26() {
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.75, delay: 0.18, ease }}
         >
-          {presentationAssets.scene26.medium ? (
-            <img src={presentationAssets.scene26.medium.src} alt={presentationAssets.scene26.medium.alt} />
-          ) : null}
+          <MediaAsset asset={presentationAssets.scene26.medium} />
         </motion.div>
         <motion.div
           className="crmScreen smallScreen"
@@ -578,9 +657,7 @@ function Scene26() {
           animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.75, delay: 0.32, ease }}
         >
-          {presentationAssets.scene26.small ? (
-            <img src={presentationAssets.scene26.small.src} alt={presentationAssets.scene26.small.alt} />
-          ) : null}
+          <MediaAsset asset={presentationAssets.scene26.small} />
         </motion.div>
       </div>
     </SceneShell>
@@ -608,7 +685,6 @@ function Scene28() {
 function Scene29() {
   return (
     <SceneShell className="center stacked warmScene">
-      <Eyebrow>Volta Andressa</Eyebrow>
       <Title>O que isso muda para vocês?</Title>
       <LineGroup
         delay={0.2}
@@ -755,20 +831,9 @@ function Scene32() {
 function Scene33({ stage }) {
   return (
     <SceneShell className="center stacked closingScene">
-      <motion.h1
-        className="unikeMark closingLogo"
-        animate={{
-          scale: stage >= 1 ? 1.16 : 0.82,
-          y: stage >= 1 ? 0 : -22,
-          opacity: 1
-        }}
-        transition={{ duration: 1.45, ease }}
-      >
-        UNIKE
-      </motion.h1>
-      {stage === 0 && (
+      {stage === 0 ? (
         <motion.p
-          className="closingPhrase"
+          className="closingPhrase closingPhraseOnly"
           initial={{ opacity: 0, y: 22, filter: "blur(14px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           exit={{ opacity: 0, y: 18, filter: "blur(18px)" }}
@@ -776,6 +841,15 @@ function Scene33({ stage }) {
         >
           Porque, no fim, tecnologia evolui. Os dados mudam. O mercado muda. Mas o futuro sempre será construído pelas pessoas que escolhem tomar decisões melhores.
         </motion.p>
+      ) : (
+        <motion.img
+          className="finalLogoImage"
+          src={presentationAssets.final.logo.src}
+          alt={presentationAssets.final.logo.alt}
+          initial={{ opacity: 0, scale: 0.78, filter: "blur(22px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1.45, ease }}
+        />
       )}
     </SceneShell>
   );

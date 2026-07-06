@@ -21,7 +21,9 @@ export default function Home() {
 
   const scene = scenes[index];
   const maxStage = scene.stages ?? 0;
-  const finalLogoOnly = scene.id === 33 && stage >= 1;
+  const sceneNumber = index + 1;
+  const isLastScene = index === scenes.length - 1;
+  const finalLogoOnly = isLastScene && stage >= 1;
 
   const goTo = useCallback((nextIndex) => {
     const bounded = Math.max(0, Math.min(scenes.length - 1, nextIndex));
@@ -36,6 +38,7 @@ export default function Home() {
       setStage((value) => value + 1);
       return;
     }
+    if (index === scenes.length - 1) return;
     goTo(index + 1);
   }, [blackout, goTo, index, maxStage, stage]);
 
@@ -105,12 +108,6 @@ export default function Home() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [goTo, next, previous]);
 
-  useEffect(() => {
-    if (scene.id !== 33 || stage !== 0 || blackout) return undefined;
-    const timer = window.setTimeout(() => setStage(1), 5200);
-    return () => window.clearTimeout(timer);
-  }, [blackout, scene.id, stage]);
-
   const progress = useMemo(() => {
     return ((index + 1) / scenes.length) * 100;
   }, [index]);
@@ -157,7 +154,7 @@ export default function Home() {
             </button>
           </div>
 
-          <div className="sceneCounter">Cena {scene.id}</div>
+          <div className="sceneCounter">Cena {sceneNumber}</div>
           <div className="progressTrack" aria-hidden="true">
             <motion.div
               className="progressFill"
@@ -192,7 +189,7 @@ export default function Home() {
                   key={item.id}
                   onClick={() => goTo(sceneIndex)}
                 >
-                  <span>Cena {item.id}</span>
+                  <span>Cena {sceneIndex + 1}</span>
                   <small>{item.label}</small>
                 </button>
               ))}
