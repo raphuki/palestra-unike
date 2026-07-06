@@ -10,9 +10,7 @@ export const presentationAssets = {
       chatgpt: null,
       internal: null,
       automation: null,
-      data: null,
-      organization: null,
-      decision: null
+      data: null
     }
   },
   scene26: {

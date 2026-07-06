@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, animate, motion, useMotionValue, useTransform } from "framer-motion";
-import { BarChart3, Bot, BrainCircuit, Database, Folder, Monitor, Sparkles, UsersRound, Wrench, Zap } from "lucide-react";
+import { BarChart3, Bot, BrainCircuit, Database, Monitor, Sparkles, UsersRound, Wrench, Zap } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { presentationAssets } from "./presentation-assets";
 
@@ -165,7 +165,7 @@ function Scene7() {
 
 function Scene8() {
   return (
-    <SceneShell className="center stacked">
+    <SceneShell className="center stacked questionGlowScene">
       <Title>A pergunta que mudou tudo</Title>
       <Subtitle className="why" delay={0.18}>Por quê?</Subtitle>
     </SceneShell>
@@ -239,7 +239,7 @@ function Scene10() {
 
 function Scene11() {
   return (
-    <SceneShell className="center stacked">
+    <SceneShell className="center stacked processGlowScene">
       <Title>Esse era apenas um processo.</Title>
       <Subtitle delay={0.2}>E quando olhamos para toda a operação?</Subtitle>
     </SceneShell>
@@ -377,7 +377,7 @@ const stormWordBank = [
   { word: "Muita coisa", focus: true }
 ];
 
-const stormWords = Array.from({ length: 186 }, (_, index) => {
+const stormWords = Array.from({ length: 340 }, (_, index) => {
   const source = stormWordBank[index % stormWordBank.length];
   const emphasisWords = ["Diamantes", "Horas", "Campanhas", "Incentivos", "Humor", "Eventos", "Guifters"];
   return {
@@ -386,32 +386,39 @@ const stormWords = Array.from({ length: 186 }, (_, index) => {
   };
 });
 
-function Scene12() {
+function Scene12({ stage }) {
+  if (stage === 0) {
+    return (
+      <SceneShell className="center chaosIntroScene">
+        <motion.h1
+          className="chaosIntroTitle"
+          initial={{ opacity: 0, y: 28, scale: 0.96, filter: "blur(18px)" }}
+          animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1, ease }}
+        >
+          O caos dos dados
+        </motion.h1>
+      </SceneShell>
+    );
+  }
+
   return (
     <SceneShell className="chaosScene stormScene">
-      <motion.h1
-        className="chaosTitle"
-        initial={{ opacity: 0, y: 28, filter: "blur(14px)" }}
-        animate={{ opacity: [0, 1, 1, 0], y: [28, 0, 0, -18], filter: ["blur(14px)", "blur(0px)", "blur(0px)", "blur(20px)"] }}
-        transition={{ duration: 5.4, times: [0, 0.18, 0.72, 1], ease }}
-      >
-        O caos dos dados
-      </motion.h1>
       <div className="chaosField stormField">
         {stormWords.map(({ word, focus }, index) => {
           const normalized = index / Math.max(stormWords.length - 1, 1);
-          const anchor = index < 26;
-          const left = ((index * 31 + (index % 7) * 19) % 118) - 9;
-          const top = ((index * 37 + (index % 5) * 23) % 116) - 8;
-          const depth = index % 74;
-          const giant = focus && index % 3 !== 1;
+          const anchor = index < 18;
+          const left = ((index * 31 + (index % 11) * 23) % 130) - 15;
+          const top = ((index * 37 + (index % 9) * 29) % 128) - 14;
+          const depth = index % 120;
+          const giant = focus && index % 4 !== 1;
           const size = giant
-            ? 3.6 + ((index * 11) % 44) / 10
-            : 0.86 + ((index * 13) % 31) / 10;
-          const enterDelay = 0.12 + Math.pow(normalized, 0.36) * 6.2;
-          const fallDistance = -900 - ((index * 43) % 680);
-          const fallOffset = ((index % 2 ? -1 : 1) * (28 + (index % 13) * 16));
-          const settleDuration = Math.max(0.14, 0.96 - normalized * 0.72);
+            ? 4.2 + ((index * 11) % 58) / 10
+            : 0.9 + ((index * 13) % 37) / 10;
+          const enterDelay = 0.2 + (1 - Math.pow(1 - normalized, 2.85)) * 10.15;
+          const fallDistance = -1080 - ((index * 43) % 820);
+          const fallOffset = ((index % 2 ? -1 : 1) * (34 + (index % 17) * 18));
+          const settleDuration = Math.max(0.12, 0.92 - normalized * 0.7);
           return (
             <motion.span
               className={focus ? "floatingWord stormWord pileWord focusWord" : "floatingWord stormWord pileWord"}
@@ -451,8 +458,8 @@ function Scene12() {
       <motion.div
         className="stormWhiteout"
         initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 0, 0.12, 0.58, 1] }}
-        transition={{ duration: 9.2, times: [0, 0.68, 0.82, 0.94, 1], ease }}
+        animate={{ opacity: [0, 0, 0.12, 0.7, 1] }}
+        transition={{ duration: 12.35, times: [0, 0.84, 0.91, 0.97, 1], ease }}
       />
     </SceneShell>
   );
@@ -499,7 +506,7 @@ const dataCards = [
 
 function Scene15() {
   return (
-    <SceneShell className="dataTypesScene">
+    <SceneShell className="dataTypesScene dataTypesLightScene">
       <Title>Os 3 tipos de dados que olhamos</Title>
       <div className="dataCards">
         {dataCards.map(({ title, glow, icon: Icon, words }, index) => (
@@ -526,7 +533,7 @@ function Scene15() {
 
 function Scene16() {
   return (
-    <SceneShell className="center stacked humanScene">
+    <SceneShell className="center stacked lightScene humanLightScene">
       <Title>Na Unike, dados também são pessoas.</Title>
       <LineGroup
         delay={0.2}
@@ -543,7 +550,7 @@ function Scene16() {
 
 function Scene17() {
   return (
-    <SceneShell className="center stacked purpleScene">
+    <SceneShell className="center stacked lightScene strategicLightScene">
       <Title className="blueTitle">E dados também são Estratégicos.</Title>
       <LineGroup
         delay={0.2}
@@ -558,7 +565,14 @@ function Scene17() {
 
 function Scene18() {
   return (
-    <SceneShell className="center stacked cyanScene">
+    <SceneShell className="center stacked eclipseScene">
+      <motion.div
+        className="eclipseHalo"
+        aria-hidden="true"
+        initial={{ opacity: 0, scale: 0.35 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.45, ease }}
+      />
       <Title>A filosofia da <span className="unikePurple">Unike</span></Title>
       <LineGroup
         delay={0.2}
@@ -652,9 +666,7 @@ const intelligenceTools = [
   { key: "chatgpt", label: "ChatGPT", icon: Bot },
   { key: "internal", label: "Ferramentas Internas", icon: Wrench },
   { key: "automation", label: "Automações", icon: Zap },
-  { key: "data", label: "Análise de Dados", icon: BarChart3 },
-  { key: "organization", label: "Organização", icon: Folder },
-  { key: "decision", label: "Apoio à decisão", icon: UsersRound }
+  { key: "data", label: "Análise de Dados", icon: BarChart3 }
 ];
 
 function Scene25() {
@@ -1024,9 +1036,9 @@ function Scene33({ stage }) {
           />
           <motion.p
             className="finalSlogan"
-            initial={{ opacity: 0, y: 18, filter: "blur(12px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1.1, delay: 1.15, ease }}
+            initial={{ opacity: 0, y: 14, scale: 0.96, filter: "blur(16px)" }}
+            animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1.35, delay: 1.05, ease }}
           >
             Ser único é o que nos conecta.
           </motion.p>
@@ -1045,12 +1057,12 @@ export const scenes = [
   { id: 9, label: "O que fizemos", Component: Scene9, stages: 4 },
   { id: 10, label: "74% → 55%", Component: Scene10 },
   { id: 11, label: "Operação", Component: Scene11 },
-  { id: 12, label: "Caos dos dados", Component: Scene12 },
+  { id: 12, label: "Caos dos dados", Component: Scene12, stages: 1 },
   { id: 13, label: "Decisões", Component: Scene13, theme: "light" },
   { id: 14, label: "Informação", Component: Scene14, theme: "light" },
-  { id: 15, label: "Tipos de dados", Component: Scene15 },
-  { id: 16, label: "Pessoas", Component: Scene16 },
-  { id: 17, label: "Estratégicos", Component: Scene17 },
+  { id: 15, label: "Tipos de dados", Component: Scene15, theme: "light" },
+  { id: 16, label: "Pessoas", Component: Scene16, theme: "light" },
+  { id: 17, label: "Estratégicos", Component: Scene17, theme: "light" },
   { id: 18, label: "Filosofia", Component: Scene18 },
   { id: 19, label: "Andressa", Component: Scene19 },
   { id: 20, label: "Enxergar antes", Component: Scene20 },
@@ -1059,7 +1071,6 @@ export const scenes = [
   { id: 23, label: "Escala", Component: Scene23 },
   { id: 24, label: "IA", Component: Scene24 },
   { id: 25, label: "Inteligência Unike", Component: Scene25 },
-  { id: 26, label: "CRM", Component: Scene26 },
   { id: 27, label: "Potencializa", Component: Scene27 },
   { id: 28, label: "Informação", Component: Scene28 },
   { id: 29, label: "Decidir melhor", Component: Scene29 },
