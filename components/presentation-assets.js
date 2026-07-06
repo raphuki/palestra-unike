@@ -1,23 +1,20 @@
 export const presentationAssets = {
   scene25: {
     primary: {
-      type: "video",
-      src: "/prints/unike-crm-intro.mp4",
-      alt: "Introdução do CRM Unike"
+      type: "videoThenImage",
+      src: "/prints/crm-opening-video.mp4",
+      posterSrc: "/prints/crm-dashboard-print.jpeg",
+      alt: "Abertura do CRM Unike"
     }
   },
   scene26: {
-    large: {
-      type: "video",
-      src: "/prints/unike-crm-window.mp4",
-      alt: "Janela do CRM Unike abrindo ao vivo"
-    },
+    large: null,
     medium: null,
     small: null
   },
   final: {
     logo: {
-      src: "/prints/unike-logo-final.jpeg",
+      src: "/prints/unike-logo-glow.png",
       alt: "UNIKE"
     }
   }

@@ -46,6 +46,17 @@ button {
   user-select: none;
 }
 
+.presentation.lightMode {
+  background: #f7f6f1;
+}
+
+.presentation.lightMode::after {
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(5, 5, 5, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(5, 5, 5, 0.02) 1px, transparent 1px);
+}
+
 .presentation::after {
   content: "";
   position: absolute;
@@ -136,6 +147,7 @@ button {
   flex-direction: column;
   justify-content: center;
   padding-left: clamp(32px, 10vw, 150px);
+  gap: clamp(14px, 3vh, 32px);
 }
 
 .transformWord {
@@ -269,6 +281,13 @@ button {
     #050505;
 }
 
+.stormScene {
+  background:
+    linear-gradient(140deg, rgba(117, 230, 255, 0.06), transparent 32%),
+    linear-gradient(320deg, rgba(232, 196, 109, 0.055), transparent 34%),
+    #050505;
+}
+
 .chaosTitle {
   position: absolute;
   left: clamp(28px, 7vw, 100px);
@@ -286,6 +305,11 @@ button {
   inset: -8vh -10vw -10vh -10vw;
   opacity: 0.98;
   mask-image: radial-gradient(circle at center, #000 50%, rgba(0, 0, 0, 0.86) 72%, transparent 100%);
+}
+
+.stormField {
+  inset: -18vh -18vw -20vh -18vw;
+  mask-image: none;
 }
 
 .floatingWord {
@@ -308,6 +332,41 @@ button {
   text-shadow:
     0 16px 36px rgba(0, 0, 0, 0.95),
     0 0 30px rgba(255, 255, 255, 0.08);
+}
+
+.stormWord {
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 0.76;
+  text-transform: none;
+}
+
+.stormWord.focusWord {
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.stormWhiteout {
+  position: absolute;
+  inset: -1px;
+  z-index: 200;
+  pointer-events: none;
+  background: #fff;
+}
+
+.lightScene {
+  background:
+    linear-gradient(155deg, rgba(130, 84, 255, 0.1), transparent 35%),
+    linear-gradient(28deg, rgba(232, 196, 109, 0.16), transparent 46%),
+    #f7f6f1;
+  color: #050505;
+}
+
+.lightScene .title,
+.lightScene .subtitle {
+  color: #050505;
+}
+
+.lightScene .subtitle {
+  opacity: 0.72;
 }
 
 .dataTypesScene {
@@ -385,11 +444,33 @@ button {
 }
 
 .warmScene {
-  background: linear-gradient(180deg, rgba(232, 196, 109, 0.035), transparent 48%);
+  background:
+    linear-gradient(180deg, rgba(232, 196, 109, 0.07), transparent 50%),
+    linear-gradient(115deg, rgba(130, 84, 255, 0.035), transparent 38%);
 }
 
 .aiScene {
-  background: linear-gradient(180deg, rgba(117, 230, 255, 0.035), transparent 50%);
+  background:
+    linear-gradient(180deg, rgba(117, 230, 255, 0.075), transparent 52%),
+    linear-gradient(250deg, rgba(130, 84, 255, 0.045), transparent 42%);
+}
+
+.purpleScene {
+  background:
+    linear-gradient(145deg, rgba(130, 84, 255, 0.09), transparent 46%),
+    linear-gradient(22deg, rgba(255, 255, 255, 0.035), transparent 45%);
+}
+
+.cyanScene {
+  background:
+    linear-gradient(130deg, rgba(117, 230, 255, 0.085), transparent 42%),
+    linear-gradient(315deg, rgba(255, 255, 255, 0.03), transparent 52%);
+}
+
+.softWarmScene {
+  background:
+    linear-gradient(160deg, rgba(232, 196, 109, 0.09), transparent 46%),
+    linear-gradient(315deg, rgba(130, 84, 255, 0.04), transparent 48%);
 }
 
 .intelligenceScene {
@@ -422,6 +503,13 @@ button {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 34px 90px rgba(0, 0, 0, 0.34);
+}
+
+.printPlaceholder {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.018)),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 18px),
+    rgba(255, 255, 255, 0.026);
 }
 
 .slotMedia {
@@ -623,13 +711,54 @@ button {
 
 .finalLogoImage {
   display: block;
-  width: min(54vw, 620px);
-  max-height: 72vh;
+  width: min(62vw, 760px);
+  max-height: 68vh;
   object-fit: contain;
   border-radius: 8px;
   box-shadow:
     0 0 90px rgba(130, 84, 255, 0.24),
     0 0 180px rgba(255, 255, 255, 0.08);
+}
+
+.finalLogoStack {
+  display: grid;
+  justify-items: center;
+  gap: clamp(16px, 3vh, 34px);
+}
+
+.finalSlogan {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(1.35rem, 2.25vw, 2.8rem);
+  font-weight: 440;
+  line-height: 1.1;
+}
+
+.lightMode .iconButton,
+.lightMode .navButton {
+  color: rgba(5, 5, 5, 0.68);
+  border-color: rgba(5, 5, 5, 0.12);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.lightMode .iconButton:hover,
+.lightMode .navButton:hover {
+  color: #050505;
+  border-color: rgba(5, 5, 5, 0.24);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.lightMode .sceneCounter {
+  color: rgba(5, 5, 5, 0.5);
+}
+
+.lightMode .progressTrack {
+  background: rgba(5, 5, 5, 0.1);
+}
+
+.lightMode .progressFill {
+  background: rgba(5, 5, 5, 0.78);
+  box-shadow: 0 0 14px rgba(5, 5, 5, 0.12);
 }
 
 .chrome {

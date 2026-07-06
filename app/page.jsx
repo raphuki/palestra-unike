@@ -23,6 +23,7 @@ export default function Home() {
   const maxStage = scene.stages ?? 0;
   const sceneNumber = index + 1;
   const isLastScene = index === scenes.length - 1;
+  const isLightScene = scene.theme === "light";
   const finalLogoOnly = isLastScene && stage >= 1;
 
   const goTo = useCallback((nextIndex) => {
@@ -116,7 +117,7 @@ export default function Home() {
 
   return (
     <main
-      className="presentation"
+      className={isLightScene ? "presentation lightMode" : "presentation"}
       onClick={(event) => {
         if (event.target.closest("[data-ui]")) return;
         if (event.clientX > window.innerWidth / 2) next();

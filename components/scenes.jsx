@@ -2,7 +2,7 @@
 
 import { animate, motion, useMotionValue, useTransform } from "framer-motion";
 import { BrainCircuit, Database, Sparkles, UsersRound } from "lucide-react";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { presentationAssets } from "./presentation-assets";
 
 const ease = [0.22, 1, 0.36, 1];
@@ -69,8 +69,7 @@ function LineGroup({ lines, delay = 0.18, className = "" }) {
 
 function Scene1() {
   return (
-    <SceneShell className="center stacked warmScene openingScene">
-      <Eyebrow>Entrada Raphael</Eyebrow>
+    <SceneShell className="center">
       <motion.h1
         className="unikeMark"
         initial={{ opacity: 0, scale: 0.94, filter: "blur(18px)" }}
@@ -85,7 +84,8 @@ function Scene1() {
 
 function Scene5() {
   return (
-    <SceneShell className="statementScene">
+    <SceneShell className="statementScene warmScene">
+      <Eyebrow>Entrada Raphael</Eyebrow>
       <div className="transformWord" aria-label="DADOS não mudam empresas. Decisões mudam.">
         <motion.span
           className="transformGhost"
@@ -317,45 +317,110 @@ const chaosWords = [
   { word: "Decisão" }
 ];
 
+const stormWords = [
+  ...chaosWords,
+  { word: "Dados", focus: true },
+  { word: "IA", focus: true },
+  { word: "Decisão", focus: true },
+  { word: "Creator Managers", focus: true },
+  { word: "Diamantes", focus: true },
+  { word: "Campanhas", focus: true },
+  { word: "Eventos", focus: true },
+  { word: "Incentivos", focus: true },
+  { word: "Horas", focus: true },
+  { word: "Humor", focus: true },
+  { word: "Guifters", focus: true },
+  { word: "CRM" },
+  { word: "ChatGPT" },
+  { word: "Automações" },
+  { word: "Dashboards" },
+  { word: "Funil" },
+  { word: "Conversão" },
+  { word: "Fila" },
+  { word: "Aprovados" },
+  { word: "Recrutados" },
+  { word: "Tempo" },
+  { word: "Contexto" },
+  { word: "Sinais" },
+  { word: "Pessoas" },
+  { word: "Operação" },
+  { word: "Escala" },
+  { word: "Prioridade" },
+  { word: "Risco" },
+  { word: "Oportunidade" },
+  { word: "Rotina" },
+  { word: "TikTok" },
+  { word: "Tabelas" },
+  { word: "Missões" },
+  { word: "Ranking" },
+  { word: "Pagamentos" },
+  { word: "Retenção" },
+  { word: "Treinamentos" },
+  { word: "Algoritmo" },
+  { word: "Perfis" },
+  { word: "Mensagens" },
+  { word: "Atendimento" },
+  { word: "Desenvolvimento" },
+  { word: "Crescimento" },
+  { word: "Colaboradores" },
+  { word: "Criadores" },
+  { word: "Meta diária" },
+  { word: "Meta semanal" },
+  { word: "Sinal fraco" },
+  { word: "Mudança" },
+  { word: "Mercado" },
+  { word: "Aprendizado" },
+  { word: "Ação" },
+  { word: "Velocidade" },
+  { word: "Volume" },
+  { word: "Tudo ao mesmo tempo", focus: true },
+  { word: "Muita coisa", focus: true }
+];
+
 function Scene12() {
   return (
-    <SceneShell className="chaosScene">
-      <Title className="chaosTitle">O caos dos dados</Title>
-      <div className="chaosField">
-        {chaosWords.map(({ word, focus }, index) => {
-          const left = ((index * 19) % 118) - 9;
-          const top = ((index * 31) % 108) - 9;
-          const depth = index % 16;
-          const size = focus ? 1.85 + ((index * 5) % 8) / 10 : 0.9 + ((index * 7) % 13) / 10;
-          const driftX = ((index % 2 ? -1 : 1) * (80 + index * 9)) % 320;
-          const driftY = ((index % 3 ? 1 : -1) * (58 + index * 7)) % 250;
+    <SceneShell className="chaosScene stormScene">
+      <motion.h1
+        className="chaosTitle"
+        initial={{ opacity: 0, y: 28, filter: "blur(14px)" }}
+        animate={{ opacity: [0, 1, 1, 0], y: [28, 0, 0, -18], filter: ["blur(14px)", "blur(0px)", "blur(0px)", "blur(20px)"] }}
+        transition={{ duration: 5.4, times: [0, 0.18, 0.72, 1], ease }}
+      >
+        O caos dos dados
+      </motion.h1>
+      <div className="chaosField stormField">
+        {stormWords.map(({ word, focus }, index) => {
+          const left = ((index * 17) % 126) - 13;
+          const top = ((index * 29) % 122) - 11;
+          const depth = index % 28;
+          const size = focus ? 2.2 + ((index * 5) % 9) / 10 : 1.05 + ((index * 7) % 18) / 10;
+          const enterDelay = 0.12 + Math.sqrt(index) * 0.52;
+          const burstDuration = Math.max(0.22, 1.24 - index * 0.006);
+          const driftX = ((index % 2 ? -1 : 1) * (120 + index * 13)) % 520;
+          const driftY = ((index % 3 ? 1 : -1) * (90 + index * 11)) % 380;
           return (
             <motion.span
-              className={focus ? "floatingWord focusWord" : "floatingWord"}
+              className={focus ? "floatingWord stormWord focusWord" : "floatingWord stormWord"}
               key={`${word}-${index}`}
               style={{
                 left: `${left}%`,
                 top: `${top}%`,
                 zIndex: 10 + depth,
-                fontSize: `clamp(${1.05 * size}rem, ${2.05 * size}vw, ${3.8 * size}rem)`,
+                fontSize: `${size}rem`,
                 rotate: `${((index * 11) % 28) - 14}deg`
               }}
-              initial={{ opacity: 0, scale: 0.9, filter: "blur(12px)" }}
+              initial={{ opacity: 0, scale: 0.62, filter: "blur(20px)" }}
               animate={{
-                opacity: focus ? [0.42, 0.96, 0.22, 0.82] : [0.18, 0.7, 0.12, 0.5],
-                x: [0, driftX, driftX * -0.45, 0],
-                y: [0, driftY, driftY * -0.6, 0],
-                scale: focus ? [1.06, 1.22, 0.98, 1.12] : [0.94, 1.12, 0.9, 1.02],
-                filter: focus
-                  ? ["blur(0px)", "blur(0px)", "blur(5px)", "blur(1px)"]
-                  : ["blur(1px)", "blur(0px)", "blur(6px)", "blur(2px)"]
+                opacity: focus ? [0, 0.9, 0.28, 1, 0] : [0, 0.72, 0.18, 0.86, 0],
+                x: [driftX * -0.18, 0, driftX * 0.38, driftX * -0.22, driftX],
+                y: [driftY * 0.12, 0, driftY * -0.34, driftY * 0.26, driftY],
+                scale: focus ? [0.72, 1.08, 1.24, 1.7, 2.4] : [0.62, 1, 1.22, 1.58, 2.2],
+                filter: ["blur(18px)", "blur(0px)", "blur(2px)", "blur(0px)", "blur(14px)"]
               }}
               transition={{
-                duration: 5.4 + (index % 9) * 0.8,
-                delay: index * 0.035,
-                repeat: Infinity,
-                repeatType: "mirror",
-                ease: "easeInOut"
+                duration: burstDuration,
+                delay: enterDelay,
+                ease: [0.16, 1, 0.3, 1]
               }}
             >
               {word}
@@ -363,13 +428,19 @@ function Scene12() {
           );
         })}
       </div>
+      <motion.div
+        className="stormWhiteout"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 0, 0.2, 1] }}
+        transition={{ duration: 7.1, times: [0, 0.68, 0.84, 1], ease }}
+      />
     </SceneShell>
   );
 }
 
 function Scene13() {
   return (
-    <SceneShell className="center stacked">
+    <SceneShell className="center stacked lightScene">
       <Title>O problema nunca foi ter dados.</Title>
       <Subtitle delay={0.2}>O problema sempre foi transformar dados em decisões.</Subtitle>
     </SceneShell>
@@ -378,7 +449,7 @@ function Scene13() {
 
 function Scene14() {
   return (
-    <SceneShell className="center stacked">
+    <SceneShell className="center stacked lightScene">
       <Title>Dado não é só número.</Title>
       <Subtitle delay={0.2}>Dado é qualquer informação que ajuda a decidir melhor.</Subtitle>
     </SceneShell>
@@ -452,7 +523,7 @@ function Scene16() {
 
 function Scene17() {
   return (
-    <SceneShell className="center stacked">
+    <SceneShell className="center stacked purpleScene">
       <Title>E dados também são Estratégicos.</Title>
       <LineGroup
         delay={0.2}
@@ -467,7 +538,7 @@ function Scene17() {
 
 function Scene18() {
   return (
-    <SceneShell className="center stacked">
+    <SceneShell className="center stacked cyanScene">
       <Title>A filosofia da Unike</Title>
       <LineGroup
         delay={0.2}
@@ -492,7 +563,7 @@ function Scene19() {
 
 function Scene20() {
   return (
-    <SceneShell className="center stacked">
+    <SceneShell className="center stacked purpleScene">
       <Title>Na prática, dados ajudam a enxergar antes.</Title>
       <LineGroup
         delay={0.2}
@@ -510,7 +581,7 @@ function Scene20() {
 
 function Scene21() {
   return (
-    <SceneShell className="center stacked">
+    <SceneShell className="center stacked cyanScene">
       <Title>Não analisamos apenas creators.</Title>
       <Subtitle delay={0.2}>Também analisamos colaboradores, processos e sinais da operação.</Subtitle>
     </SceneShell>
@@ -519,7 +590,7 @@ function Scene21() {
 
 function Scene22() {
   return (
-    <SceneShell className="center stacked">
+    <SceneShell className="center stacked softWarmScene">
       <Title>Ler o TikTok antes dos outros.</Title>
       <LineGroup
         delay={0.2}
@@ -534,7 +605,7 @@ function Scene22() {
 
 function Scene23() {
   return (
-    <SceneShell className="center stacked">
+    <SceneShell className="center stacked purpleScene">
       <Title>O desafio é a escala.</Title>
       <LineGroup
         delay={0.2}
@@ -593,9 +664,10 @@ function Scene25() {
 }
 
 function AssetSlot({ asset, className = "" }) {
+  const hasWindow = asset?.type === "video" || asset?.type === "videoThenImage";
   return (
-    <div className={`assetSlot ${asset?.type === "video" ? "videoSlot" : ""} ${className}`}>
-      {asset?.type === "video" ? (
+    <div className={`assetSlot ${hasWindow ? "videoSlot" : ""} ${className}`}>
+      {hasWindow ? (
         <div className="windowBar" aria-hidden="true">
           <span />
           <span />
@@ -608,7 +680,31 @@ function AssetSlot({ asset, className = "" }) {
 }
 
 function MediaAsset({ asset }) {
+  const [showFallback, setShowFallback] = useState(false);
+
+  useEffect(() => {
+    setShowFallback(false);
+  }, [asset?.src]);
+
   if (!asset) return null;
+  if (asset.type === "videoThenImage") {
+    if (showFallback) {
+      return <img className="slotMedia" src={asset.posterSrc} alt={asset.alt} />;
+    }
+
+    return (
+      <video
+        className="slotMedia"
+        src={asset.src}
+        aria-label={asset.alt}
+        autoPlay
+        muted
+        playsInline
+        onEnded={() => setShowFallback(true)}
+      />
+    );
+  }
+
   if (asset.type === "video") {
     return (
       <video
@@ -631,7 +727,7 @@ function Scene26() {
     <SceneShell className="crmScene">
       <div className="screenRail">
         <motion.div
-          className="crmScreen largeScreen"
+          className="crmScreen largeScreen printPlaceholder"
           initial={{ opacity: 0, x: -34, filter: "blur(14px)" }}
           animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.75, ease }}
@@ -644,7 +740,7 @@ function Scene26() {
           <MediaAsset asset={presentationAssets.scene26.large} />
         </motion.div>
         <motion.div
-          className="crmScreen mediumScreen"
+          className="crmScreen mediumScreen printPlaceholder"
           initial={{ opacity: 0, y: 34, filter: "blur(14px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.75, delay: 0.18, ease }}
@@ -652,7 +748,7 @@ function Scene26() {
           <MediaAsset asset={presentationAssets.scene26.medium} />
         </motion.div>
         <motion.div
-          className="crmScreen smallScreen"
+          className="crmScreen smallScreen printPlaceholder"
           initial={{ opacity: 0, x: 34, filter: "blur(14px)" }}
           animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.75, delay: 0.32, ease }}
@@ -666,7 +762,7 @@ function Scene26() {
 
 function Scene27() {
   return (
-    <SceneShell className="center stacked">
+    <SceneShell className="center stacked cyanScene">
       <Title>IA não faz o trabalho.</Title>
       <Subtitle delay={0.2}>Ela potencializa quem sabe decidir.</Subtitle>
     </SceneShell>
@@ -675,7 +771,7 @@ function Scene27() {
 
 function Scene28() {
   return (
-    <SceneShell className="center stacked">
+    <SceneShell className="center stacked softWarmScene">
       <Title>Menos tempo procurando informação.</Title>
       <Subtitle delay={0.2}>Mais tempo decidindo o que fazer com ela.</Subtitle>
     </SceneShell>
@@ -801,7 +897,7 @@ function Scene30({ stage }) {
 
 function Scene31() {
   return (
-    <SceneShell className="center stacked">
+    <SceneShell className="center stacked purpleScene">
       <Title>Tempo para desenvolver creators.</Title>
       <LineGroup
         delay={0.2}
@@ -813,7 +909,7 @@ function Scene31() {
 
 function Scene32() {
   return (
-    <SceneShell className="center stacked">
+    <SceneShell className="center stacked cyanScene">
       <Title>A maior ferramenta da Unike</Title>
       <LineGroup
         delay={0.2}
@@ -842,14 +938,24 @@ function Scene33({ stage }) {
           Porque, no fim, tecnologia evolui. Os dados mudam. O mercado muda. Mas o futuro sempre será construído pelas pessoas que escolhem tomar decisões melhores.
         </motion.p>
       ) : (
-        <motion.img
-          className="finalLogoImage"
-          src={presentationAssets.final.logo.src}
-          alt={presentationAssets.final.logo.alt}
-          initial={{ opacity: 0, scale: 0.78, filter: "blur(22px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          transition={{ duration: 1.45, ease }}
-        />
+        <div className="finalLogoStack">
+          <motion.img
+            className="finalLogoImage"
+            src={presentationAssets.final.logo.src}
+            alt={presentationAssets.final.logo.alt}
+            initial={{ opacity: 0, scale: 0.68, filter: "blur(24px)" }}
+            animate={{ opacity: 1, scale: [0.68, 1, 1.08], filter: "blur(0px)" }}
+            transition={{ duration: 3.4, ease }}
+          />
+          <motion.p
+            className="finalSlogan"
+            initial={{ opacity: 0, y: 18, filter: "blur(12px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.1, delay: 1.15, ease }}
+          >
+            Ser único é o que nos conecta.
+          </motion.p>
+        </div>
       )}
     </SceneShell>
   );
@@ -865,8 +971,8 @@ export const scenes = [
   { id: 10, label: "74% → 55%", Component: Scene10 },
   { id: 11, label: "Operação", Component: Scene11 },
   { id: 12, label: "Caos dos dados", Component: Scene12 },
-  { id: 13, label: "Decisões", Component: Scene13 },
-  { id: 14, label: "Informação", Component: Scene14 },
+  { id: 13, label: "Decisões", Component: Scene13, theme: "light" },
+  { id: 14, label: "Informação", Component: Scene14, theme: "light" },
   { id: 15, label: "Tipos de dados", Component: Scene15 },
   { id: 16, label: "Pessoas", Component: Scene16 },
   { id: 17, label: "Estratégicos", Component: Scene17 },
