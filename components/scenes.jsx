@@ -1,8 +1,8 @@
 "use client";
 
 import { AnimatePresence, animate, motion, useMotionValue, useTransform } from "framer-motion";
-import { BrainCircuit, Database, UsersRound } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Bot, BrainCircuit, Database, Monitor, Sparkles, UsersRound, Wrench, Zap } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 import { stormWords as premiumStormWords } from "./chaos-words";
 import { presentationAssets } from "./presentation-assets";
 
@@ -521,6 +521,223 @@ function Scene23() {
   );
 }
 
+function Scene24() {
+  return (
+    <SceneShell className="center stacked aiScene">
+      <Title>Foi aí que a IA entrou.</Title>
+      <LineGroup delay={0.2} lines={["Não para substituir pessoas.", "Para acelerar decisões."]} />
+    </SceneShell>
+  );
+}
+
+const intelligenceTools = [
+  { key: "crm", label: "CRM Unike", icon: Monitor },
+  { key: "chatgpt", label: "ChatGPT", icon: Bot },
+  { key: "internal", label: "Ferramentas Internas", icon: Wrench },
+  { key: "automation", label: "Automações", icon: Zap },
+  { key: "creatorPanel", label: "Painel do Criador", icon: UsersRound }
+];
+
+function Scene25({ stage = 0 }) {
+  const activeTool = intelligenceTools[Math.min(stage, intelligenceTools.length - 1)];
+  const activeAsset = presentationAssets.scene25.tools?.[activeTool.key] ?? null;
+
+  return (
+    <SceneShell className="intelligenceScene">
+      <div className="intelligenceHeader">
+        <Title>Inteligência Unike</Title>
+        <Subtitle delay={0.18}>Como usamos IA hoje a nosso favor.</Subtitle>
+      </div>
+      <div className="liveCrmStage">
+        <AssetSlot
+          key={activeTool.key}
+          className="primarySlot liveCrmWindow softwareWindow"
+          asset={activeAsset}
+          forceWindow
+          label={activeTool.label}
+        />
+        <div className="liveCrmPills" aria-label="Ferramentas da Inteligência Unike">
+          {intelligenceTools.map(({ key, label, icon: Icon }, index) => (
+            <motion.div
+              key={key}
+              className={key === activeTool.key ? "intelligenceItem active" : "intelligenceItem"}
+              initial={{ opacity: 0, y: 16, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.58, delay: 0.28 + index * 0.06, ease }}
+            >
+              <Icon size={20} strokeWidth={1.5} />
+              <span>{label}</span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </SceneShell>
+  );
+}
+
+function AssetSlot({ asset, className = "", forceWindow = false, label = "" }) {
+  const hasWindow = forceWindow || asset?.type === "video" || asset?.type === "videoThenImage";
+  return (
+    <div className={`assetSlot ${hasWindow ? "videoSlot" : ""} ${className}`}>
+      {hasWindow ? (
+        <div className="windowBar" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+      ) : null}
+      <MediaAsset asset={asset} label={label} />
+    </div>
+  );
+}
+
+function MediaAsset({ asset, label = "" }) {
+  const [showFallback, setShowFallback] = useState(false);
+
+  useEffect(() => {
+    setShowFallback(false);
+  }, [asset?.src]);
+
+  if (!asset) {
+    return (
+      <motion.div
+        className="toolPlaceholder"
+        initial={{ opacity: 0, scale: 0.985, filter: "blur(12px)" }}
+        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.55, ease }}
+      >
+        <Sparkles size={34} strokeWidth={1.25} />
+        <strong>{label}</strong>
+        <span>Espaço preparado para print real.</span>
+      </motion.div>
+    );
+  }
+
+  if (asset.type === "videoThenImage") {
+    return (
+      <AnimatePresence mode="wait">
+        {showFallback ? (
+          <motion.img
+            key={`${asset.posterSrc}-poster`}
+            className="slotMedia"
+            src={asset.posterSrc}
+            alt={asset.alt}
+            initial={{ opacity: 0, filter: "blur(8px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, filter: "blur(8px)" }}
+            transition={{ duration: 0.5, ease }}
+          />
+        ) : (
+          <motion.video
+            key={`${asset.src}-video`}
+            className="slotMedia"
+            src={asset.src}
+            aria-label={asset.alt}
+            autoPlay
+            muted
+            playsInline
+            initial={{ opacity: 0, filter: "blur(8px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, filter: "blur(8px)" }}
+            transition={{ duration: 0.5, ease }}
+            onEnded={() => setShowFallback(true)}
+          />
+        )}
+      </AnimatePresence>
+    );
+  }
+
+  if (asset.type === "video") {
+    return (
+      <motion.video
+        className="slotMedia"
+        src={asset.src}
+        aria-label={asset.alt}
+        autoPlay
+        muted
+        loop
+        playsInline
+        initial={{ opacity: 0, filter: "blur(8px)" }}
+        animate={{ opacity: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.5, ease }}
+      />
+    );
+  }
+
+  if (asset.type === "videoOnceFreeze") {
+    return (
+      <motion.video
+        className="slotMedia"
+        src={asset.src}
+        aria-label={asset.alt}
+        autoPlay
+        muted
+        playsInline
+        initial={{ opacity: 0, filter: "blur(8px)" }}
+        animate={{ opacity: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.5, ease }}
+        onEnded={(event) => {
+          const video = event.currentTarget;
+          const freezeTime = Number.isFinite(video.duration) ? Math.max(video.duration - 0.08, 0) : 0;
+          if (freezeTime > 0) {
+            video.currentTime = freezeTime;
+          }
+          video.pause();
+        }}
+      />
+    );
+  }
+
+  return (
+    <motion.img
+      className="slotMedia"
+      src={asset.src}
+      alt={asset.alt}
+      initial={{ opacity: 0, filter: "blur(8px)" }}
+      animate={{ opacity: 1, filter: "blur(0px)" }}
+      transition={{ duration: 0.5, ease }}
+    />
+  );
+}
+
+function Scene26() {
+  return (
+    <SceneShell className="crmScene">
+      <div className="screenRail">
+        <motion.div
+          className="crmScreen largeScreen printPlaceholder"
+          initial={{ opacity: 0, x: -34, filter: "blur(14px)" }}
+          animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.75, ease }}
+        >
+          <div className="windowBar" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </div>
+          <MediaAsset asset={presentationAssets.scene26.large} />
+        </motion.div>
+        <motion.div
+          className="crmScreen mediumScreen printPlaceholder"
+          initial={{ opacity: 0, y: 34, filter: "blur(14px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.75, delay: 0.18, ease }}
+        >
+          <MediaAsset asset={presentationAssets.scene26.medium} />
+        </motion.div>
+        <motion.div
+          className="crmScreen smallScreen printPlaceholder"
+          initial={{ opacity: 0, x: 34, filter: "blur(14px)" }}
+          animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.75, delay: 0.32, ease }}
+        >
+          <MediaAsset asset={presentationAssets.scene26.small} />
+        </motion.div>
+      </div>
+    </SceneShell>
+  );
+}
+
 function Scene27() {
   return (
     <SceneShell className="center stacked cyanScene">
@@ -551,6 +768,42 @@ function Scene29() {
           "Está em decidir melhor."
         ]}
       />
+    </SceneShell>
+  );
+}
+
+function Scene30({ stage }) {
+  return (
+    <SceneShell className="center stacked tempoScene">
+      {stage === 0 ? (
+        <>
+          <Title>Automatizar a coleta e análise de dados traz</Title>
+          <motion.div
+            className="tempoWord"
+            initial={{ opacity: 0, scale: 0.94, filter: "blur(16px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 0.9, delay: 0.24, ease }}
+          >
+            TEMPO
+          </motion.div>
+        </>
+      ) : (
+        <>
+          <TempoParticles />
+          <LineGroup
+            delay={2.05}
+            className="tempoSubtitle"
+            lines={[
+              "Tempo para olhar onde realmente importa.",
+              "Creators.",
+              "Colaboradores.",
+              "Oportunidades.",
+              "Mudanças do mercado.",
+              "Tomadas de decisão."
+            ]}
+          />
+        </>
+      )}
     </SceneShell>
   );
 }
@@ -623,29 +876,33 @@ function Scene33({ stage }) {
 
 export const scenes = [
   { id: 1, label: "UNIKE", Component: Scene1 },
-  { id: 5, label: "DADOS", Component: Scene5 },
-  { id: 6, label: "74%", Component: Scene6, stages: 1 },
-  { id: 7, label: "Contexto", Component: Scene7 },
-  { id: 8, label: "Como?", Component: Scene8 },
-  { id: 9, label: "O que fizemos", Component: Scene9, stages: 4 },
-  { id: 10, label: "74% → 55%", Component: Scene10 },
-  { id: 11, label: "Operação", Component: Scene11 },
-  { id: 12, label: "Caos dos dados", Component: Scene12, stages: 1 },
-  { id: 13, label: "Decisões", Component: Scene13, theme: "light" },
-  { id: 14, label: "Informação", Component: Scene14, theme: "light" },
-  { id: 15, label: "Tipos de dados", Component: Scene15, theme: "light" },
-  { id: 16, label: "Pessoas", Component: Scene16, theme: "light" },
-  { id: 17, label: "Estratégicos", Component: Scene17, theme: "light" },
-  { id: 18, label: "Filosofia", Component: Scene18 },
-  { id: 19, label: "Andressa", Component: Scene19 },
-  { id: 20, label: "Enxergar antes", Component: Scene20 },
-  { id: 21, label: "Operação", Component: Scene21 },
-  { id: 22, label: "TikTok", Component: Scene22 },
-  { id: 23, label: "Escala", Component: Scene23 },
-  { id: 27, label: "Potencializa", Component: Scene27 },
-  { id: 28, label: "Informação", Component: Scene28 },
-  { id: 29, label: "Decidir melhor", Component: Scene29 },
-  { id: 31, label: "Desenvolver", Component: Scene31 },
-  { id: 32, label: "Ferramenta", Component: Scene32 },
-  { id: 33, label: "UNIKE", Component: Scene33, stages: 1 }
+  { id: 2, label: "DADOS", Component: Scene5 },
+  { id: 3, label: "74%", Component: Scene6, stages: 1 },
+  { id: 4, label: "Contexto", Component: Scene7 },
+  { id: 5, label: "Como?", Component: Scene8 },
+  { id: 6, label: "O que fizemos", Component: Scene9, stages: 4 },
+  { id: 7, label: "74% → 55%", Component: Scene10 },
+  { id: 8, label: "Operação", Component: Scene11 },
+  { id: 9, label: "Caos dos dados", Component: Scene12, stages: 1 },
+  { id: 10, label: "Decisões", Component: Scene13, theme: "light" },
+  { id: 11, label: "Informação", Component: Scene14, theme: "light" },
+  { id: 12, label: "Tipos de dados", Component: Scene15, theme: "light" },
+  { id: 13, label: "Pessoas", Component: Scene16, theme: "light" },
+  { id: 14, label: "Estratégicos", Component: Scene17, theme: "light" },
+  { id: 15, label: "Filosofia", Component: Scene18 },
+  { id: 16, label: "Andressa", Component: Scene19 },
+  { id: 17, label: "Enxergar antes", Component: Scene20 },
+  { id: 18, label: "Operação", Component: Scene21 },
+  { id: 19, label: "TikTok", Component: Scene22 },
+  { id: 20, label: "Escala", Component: Scene23 },
+  { id: 21, label: "IA", Component: Scene24 },
+  { id: 22, label: "Inteligência Unike", Component: Scene25, stages: 4 },
+  { id: 23, label: "CRM", Component: Scene26 },
+  { id: 24, label: "Potencializa", Component: Scene27 },
+  { id: 25, label: "Informação", Component: Scene28 },
+  { id: 26, label: "Decidir melhor", Component: Scene29 },
+  { id: 27, label: "TEMPO", Component: Scene30, stages: 1 },
+  { id: 28, label: "Desenvolver", Component: Scene31 },
+  { id: 29, label: "Ferramenta", Component: Scene32 },
+  { id: 30, label: "UNIKE", Component: Scene33, stages: 1 }
 ];
