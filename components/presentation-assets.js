@@ -1,4 +1,10 @@
 export const presentationAssets = {
+  opening: {
+    logo: {
+      src: "prints/unike-opening-logo.png",
+      alt: "UNIKE"
+    }
+  },
   scene25: {
     tools: {
       crm: {
@@ -7,10 +13,26 @@ export const presentationAssets = {
         posterSrc: "prints/crm-dashboard-print.png",
         alt: "Abertura do CRM Unike"
       },
-      chatgpt: null,
-      internal: null,
-      automation: null,
-      data: null
+      chatgpt: {
+        type: "image",
+        src: "prints/tool-chatgpt-print.png",
+        alt: "Print do ChatGPT"
+      },
+      internal: {
+        type: "image",
+        src: "prints/tool-internal-print.png",
+        alt: "Print de Ferramentas Internas"
+      },
+      automation: {
+        type: "image",
+        src: "prints/tool-automation-print.png",
+        alt: "Print de Automações"
+      },
+      creatorPanel: {
+        type: "videoOnceFreeze",
+        src: "prints/tool-creator-panel.mp4",
+        alt: "Painel do Criador"
+      }
     }
   },
   scene26: {

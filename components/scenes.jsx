@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, animate, motion, useMotionValue, useTransform } from "framer-motion";
-import { BarChart3, Bot, BrainCircuit, Database, Monitor, Sparkles, UsersRound, Wrench, Zap } from "lucide-react";
+import { Bot, BrainCircuit, Database, Monitor, Sparkles, UsersRound, Wrench, Zap } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { stormWords as premiumStormWords } from "./chaos-words";
 import { presentationAssets } from "./presentation-assets";
@@ -71,14 +71,14 @@ function LineGroup({ lines, delay = 0.18, className = "" }) {
 function Scene1() {
   return (
     <SceneShell className="center">
-      <motion.h1
-        className="unikeMark"
+      <motion.img
+        className="openingLogoMark"
+        src={presentationAssets.opening.logo.src}
+        alt={presentationAssets.opening.logo.alt}
         initial={{ opacity: 0, scale: 0.94, filter: "blur(18px)" }}
         animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
         transition={{ duration: 1.2, ease }}
-      >
-        UNIKE
-      </motion.h1>
+      />
     </SceneShell>
   );
 }
@@ -168,7 +168,7 @@ function Scene8() {
   return (
     <SceneShell className="center stacked questionGlowScene">
       <Title>A pergunta que mudou tudo</Title>
-      <Subtitle className="why" delay={0.18}>Por quê?</Subtitle>
+      <Subtitle className="why" delay={0.18}>Como?</Subtitle>
     </SceneShell>
   );
 }
@@ -247,146 +247,6 @@ function Scene11() {
   );
 }
 
-const chaosWords = [
-  { word: "Diamantes", focus: true },
-  { word: "Horas", focus: true },
-  { word: "Campanhas", focus: true },
-  { word: "Incentivos", focus: true },
-  { word: "Humor", focus: true },
-  { word: "Eventos", focus: true },
-  { word: "Guifters", focus: true },
-  { word: "Horas de live", focus: true },
-  { word: "Diamantes", focus: true },
-  { word: "Campanhas", focus: true },
-  { word: "Eventos", focus: true },
-  { word: "Incentivos", focus: true },
-  { word: "Humor", focus: true },
-  { word: "Guifters", focus: true },
-  { word: "Retenção" },
-  { word: "Liga" },
-  { word: "Power Ups" },
-  { word: "Co-host" },
-  { word: "Metas" },
-  { word: "Ranking" },
-  { word: "Creators" },
-  { word: "Recrutamento" },
-  { word: "Atendimento" },
-  { word: "Colaboradores" },
-  { word: "TikTok" },
-  { word: "Pagamentos" },
-  { word: "Frequência" },
-  { word: "Oportunidades" },
-  { word: "Risco" },
-  { word: "Evolução" },
-  { word: "Desenvolvimento" },
-  { word: "Turnover" },
-  { word: "Metas semanais" },
-  { word: "Tabela" },
-  { word: "Bônus" },
-  { word: "Missões" },
-  { word: "Lives" },
-  { word: "Top creators" },
-  { word: "Quedas" },
-  { word: "Respostas" },
-  { word: "Mensagens" },
-  { word: "Onboarding" },
-  { word: "Performance" },
-  { word: "Sinais" },
-  { word: "Atrasos" },
-  { word: "Engajamento" },
-  { word: "Comunidade" },
-  { word: "Agenda" },
-  { word: "Rotina" },
-  { word: "Alertas" },
-  { word: "Relatórios" },
-  { word: "Análise" },
-  { word: "Qualidade" },
-  { word: "Crescimento" },
-  { word: "Queda brusca" },
-  { word: "Potencial" },
-  { word: "Prioridade" },
-  { word: "Saturação" },
-  { word: "Histórico" },
-  { word: "Conversas" },
-  { word: "Feedback" },
-  { word: "Conteúdo" },
-  { word: "Alcance" },
-  { word: "Timing" },
-  { word: "Operação" },
-  { word: "Escala" },
-  { word: "Sinal fraco" },
-  { word: "Decisão" }
-];
-
-const stormWordBank = [
-  ...chaosWords,
-  { word: "Dados", focus: true },
-  { word: "IA", focus: true },
-  { word: "Decisão", focus: true },
-  { word: "Creator Managers", focus: true },
-  { word: "Diamantes", focus: true },
-  { word: "Campanhas", focus: true },
-  { word: "Eventos", focus: true },
-  { word: "Incentivos", focus: true },
-  { word: "Horas", focus: true },
-  { word: "Humor", focus: true },
-  { word: "Guifters", focus: true },
-  { word: "CRM" },
-  { word: "ChatGPT" },
-  { word: "Automações" },
-  { word: "Dashboards" },
-  { word: "Funil" },
-  { word: "Conversão" },
-  { word: "Fila" },
-  { word: "Aprovados" },
-  { word: "Recrutados" },
-  { word: "Tempo" },
-  { word: "Contexto" },
-  { word: "Sinais" },
-  { word: "Pessoas" },
-  { word: "Operação" },
-  { word: "Escala" },
-  { word: "Prioridade" },
-  { word: "Risco" },
-  { word: "Oportunidade" },
-  { word: "Rotina" },
-  { word: "TikTok" },
-  { word: "Tabelas" },
-  { word: "Missões" },
-  { word: "Ranking" },
-  { word: "Pagamentos" },
-  { word: "Retenção" },
-  { word: "Treinamentos" },
-  { word: "Algoritmo" },
-  { word: "Perfis" },
-  { word: "Mensagens" },
-  { word: "Atendimento" },
-  { word: "Desenvolvimento" },
-  { word: "Crescimento" },
-  { word: "Colaboradores" },
-  { word: "Criadores" },
-  { word: "Meta diária" },
-  { word: "Meta semanal" },
-  { word: "Sinal fraco" },
-  { word: "Mudança" },
-  { word: "Mercado" },
-  { word: "Aprendizado" },
-  { word: "Ação" },
-  { word: "Velocidade" },
-  { word: "Volume" },
-  { word: "Tudo ao mesmo tempo", focus: true },
-  { word: "Muita coisa", focus: true }
-];
-
-const stormWords = Array.from({ length: 340 }, (_, index) => {
-  const source = stormWordBank[index % stormWordBank.length];
-  const emphasisWords = ["Diamantes", "Horas", "Campanhas", "Incentivos", "Humor", "Eventos", "Guifters"];
-  return {
-    ...source,
-    focus: source.focus || emphasisWords.includes(source.word) || index % 29 === 0
-  };
-});
-
 function Scene12({ stage }) {
   if (stage === 0) {
     return (
@@ -406,38 +266,29 @@ function Scene12({ stage }) {
   return (
     <SceneShell className="chaosScene stormScene">
       <div className="chaosField stormField">
-        {premiumStormWords.map(({ word, focus, mega, category, lateral }, index) => {
-          const normalized = index / Math.max(premiumStormWords.length - 1, 1);
-          const left = ((index * 47 + (index % 19) * 29) % 148) - 24;
-          const top = ((index * 59 + (index % 13) * 31) % 140) - 20;
-          const depth = 10 + ((index * 37) % 260);
+        {premiumStormWords.map(({ word, focus, mega, category }, index) => {
+          const left = ((index * 41 + (index % 17) * 29) % 140) - 18;
+          const top = ((index * 53 + (index % 19) * 23) % 130) - 12;
+          const depth = 12 + ((index * 37) % 260);
           const size = mega
-            ? 8.6 + ((index * 13) % 64) / 10
+            ? 7.2 + ((index * 11) % 58) / 10
             : focus
-              ? 4.6 + ((index * 11) % 54) / 10
-              : 0.66 + ((index * 17) % 42) / 10;
-          const fromLeft = index % 10 < 5;
-          const sideX = fromLeft ? -1500 - (index % 9) * 180 : 1500 + (index % 9) * 180;
-          const topY = -1160 - ((index * 43) % 900);
-          const bottomY = 860 + ((index * 31) % 540);
-          const entryX = lateral ? sideX : ((index % 2 ? -1 : 1) * (80 + (index % 21) * 24));
-          const entryY = lateral ? ((index % 3) - 1) * (220 + (index % 7) * 42) : (index % 6 === 0 ? bottomY : topY);
-          const crossX = lateral ? -sideX * (0.12 + (index % 5) * 0.035) : ((index % 3) - 1) * (240 + (index % 11) * 44);
-          const crossY = lateral ? ((index % 2 ? -1 : 1) * (190 + (index % 12) * 38)) : ((index % 4) - 1.5) * (150 + (index % 9) * 32);
-          const finalScale = mega ? 1.08 : focus ? 1.04 : 1;
-          const midScale = mega ? 1.26 : focus ? 1.18 : 1.08;
-          const enterDelay = 0.1 + (1 - Math.pow(1 - normalized, 2.55)) * 10.55 + (index % 9) * 0.035;
-          const settleDuration = 0.36 + (index % 17) * 0.075 + (lateral ? 0.55 : 0) + (mega ? 0.35 : 0);
+              ? 4.4 + ((index * 7) % 40) / 10
+              : 0.74 + ((index * 13) % 34) / 10;
+          const driftX = ((index % 15) - 7) * (18 + (index % 6) * 6);
+          const dropHeight = -1200 - ((index * 29) % 980);
+          const delay = (index % 22) * 0.045;
+          const duration = 4.8 + (index % 12) * 0.38 + (focus ? 0.6 : 0) + (mega ? 1.1 : 0);
+          const settleScale = mega ? 1.12 : focus ? 1.05 : 1;
           return (
             <motion.span
               className={[
                 "floatingWord",
                 "stormWord",
-                "pileWord",
+                "fallingChaosWord",
                 category,
                 focus ? "focusWord" : "",
                 mega ? "megaWord" : "",
-                lateral ? "lateralWord" : ""
               ].filter(Boolean).join(" ")}
               key={`${word}-${index}`}
               style={{
@@ -445,27 +296,27 @@ function Scene12({ stage }) {
                 top: `${top}%`,
                 zIndex: depth,
                 fontSize: `${size}rem`,
-                rotate: `${((index * 23) % 44) - 22}deg`
+                rotate: `${((index * 19) % 38) - 19}deg`
               }}
               initial={{
                 opacity: 0,
-                x: entryX,
-                y: entryY,
-                scale: mega ? 1.62 : 1.24,
-                filter: "blur(24px)"
+                x: driftX,
+                y: dropHeight,
+                scale: mega ? 1.22 : 1.08,
+                filter: "blur(18px)"
               }}
               animate={{
-                opacity: [0, focus ? 0.98 : 0.78, focus ? 0.98 : 0.86],
-                x: [entryX, crossX, 0],
-                y: [entryY, crossY, 0],
-                scale: [mega ? 1.62 : 1.24, midScale, finalScale],
-                filter: ["blur(24px)", "blur(3px)", "blur(0px)"]
+                opacity: [0, focus ? 0.96 : 0.78, focus ? 0.98 : 0.88],
+                x: [driftX, driftX * 0.42, 0],
+                y: [dropHeight, 36 + (index % 8) * 8, 0],
+                scale: [mega ? 1.22 : 1.08, mega ? 1.18 : 1.05, settleScale],
+                filter: ["blur(18px)", "blur(4px)", "blur(0px)"]
               }}
               transition={{
-                duration: settleDuration,
-                delay: enterDelay,
-                times: [0, 0.58, 1],
-                ease: [0.16, 1, 0.3, 1]
+                duration,
+                delay,
+                times: [0, 0.82, 1],
+                ease: [0.18, 1, 0.32, 1]
               }}
             >
               {word}
@@ -476,8 +327,8 @@ function Scene12({ stage }) {
       <motion.div
         className="stormWhiteout"
         initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 0, 0.12, 0.7, 1] }}
-        transition={{ duration: 12.35, times: [0, 0.84, 0.91, 0.97, 1], ease }}
+        animate={{ opacity: [0, 0, 0.1, 0.68, 1] }}
+        transition={{ duration: 10.6, times: [0, 0.82, 0.9, 0.965, 1], ease }}
       />
     </SceneShell>
   );
@@ -591,6 +442,7 @@ function Scene18() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.45, ease }}
       />
+      <Eyebrow>Entrada Andressa</Eyebrow>
       <Title>A filosofia da <span className="unikePurple">Unike</span></Title>
       <LineGroup
         delay={0.2}
@@ -606,7 +458,6 @@ function Scene18() {
 function Scene19() {
   return (
     <SceneShell className="center stacked warmScene">
-      <Eyebrow>Entrada Andressa</Eyebrow>
       <Title className="goldTitle">Decisões</Title>
       <Subtitle delay={0.2}>Como essa filosofia acontece na prática.</Subtitle>
     </SceneShell>
@@ -684,11 +535,11 @@ const intelligenceTools = [
   { key: "chatgpt", label: "ChatGPT", icon: Bot },
   { key: "internal", label: "Ferramentas Internas", icon: Wrench },
   { key: "automation", label: "Automações", icon: Zap },
-  { key: "data", label: "Análise de Dados", icon: BarChart3 }
+  { key: "creatorPanel", label: "Painel do Criador", icon: UsersRound }
 ];
 
-function Scene25() {
-  const [activeTool, setActiveTool] = useState(intelligenceTools[0]);
+function Scene25({ stage = 0 }) {
+  const activeTool = intelligenceTools[Math.min(stage, intelligenceTools.length - 1)];
   const activeAsset = presentationAssets.scene25.tools?.[activeTool.key] ?? null;
 
   return (
@@ -697,7 +548,7 @@ function Scene25() {
         <Title>Inteligência Unike</Title>
         <Subtitle delay={0.18}>Como usamos IA hoje a nosso favor.</Subtitle>
       </div>
-      <div className="liveCrmStage" data-ui>
+      <div className="liveCrmStage">
         <AssetSlot
           key={activeTool.key}
           className="primarySlot liveCrmWindow softwareWindow"
@@ -707,18 +558,16 @@ function Scene25() {
         />
         <div className="liveCrmPills" aria-label="Ferramentas da Inteligência Unike">
           {intelligenceTools.map(({ key, label, icon: Icon }, index) => (
-            <motion.button
+            <motion.div
               key={key}
-              type="button"
               className={key === activeTool.key ? "intelligenceItem active" : "intelligenceItem"}
-              onClick={() => setActiveTool(intelligenceTools[index])}
               initial={{ opacity: 0, y: 16, filter: "blur(10px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.58, delay: 0.28 + index * 0.06, ease }}
             >
               <Icon size={20} strokeWidth={1.5} />
               <span>{label}</span>
-            </motion.button>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -811,6 +660,30 @@ function MediaAsset({ asset, label = "" }) {
         initial={{ opacity: 0, filter: "blur(8px)" }}
         animate={{ opacity: 1, filter: "blur(0px)" }}
         transition={{ duration: 0.5, ease }}
+      />
+    );
+  }
+
+  if (asset.type === "videoOnceFreeze") {
+    return (
+      <motion.video
+        className="slotMedia"
+        src={asset.src}
+        aria-label={asset.alt}
+        autoPlay
+        muted
+        playsInline
+        initial={{ opacity: 0, filter: "blur(8px)" }}
+        animate={{ opacity: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.5, ease }}
+        onEnded={(event) => {
+          const video = event.currentTarget;
+          const freezeTime = Number.isFinite(video.duration) ? Math.max(video.duration - 0.08, 0) : 0;
+          if (freezeTime > 0) {
+            video.currentTime = freezeTime;
+          }
+          video.pause();
+        }}
       />
     );
   }
@@ -1048,9 +921,9 @@ function Scene33({ stage }) {
             className="finalLogoImage"
             src={presentationAssets.final.logo.src}
             alt={presentationAssets.final.logo.alt}
-            initial={{ opacity: 0, scale: 0.68, filter: "blur(24px)" }}
-            animate={{ opacity: 1, scale: [0.68, 1, 1.08], filter: "blur(0px)" }}
-            transition={{ duration: 3.4, ease }}
+            initial={{ opacity: 0, scale: 0.62, filter: "blur(24px)" }}
+            animate={{ opacity: 1, scale: [0.62, 1.28, 1.62], filter: "blur(0px)" }}
+            transition={{ duration: 3.8, ease }}
           />
           <motion.p
             className="finalSlogan"
@@ -1071,7 +944,7 @@ export const scenes = [
   { id: 5, label: "DADOS", Component: Scene5 },
   { id: 6, label: "74%", Component: Scene6, stages: 1 },
   { id: 7, label: "Contexto", Component: Scene7 },
-  { id: 8, label: "Por quê?", Component: Scene8 },
+  { id: 8, label: "Como?", Component: Scene8 },
   { id: 9, label: "O que fizemos", Component: Scene9, stages: 4 },
   { id: 10, label: "74% → 55%", Component: Scene10 },
   { id: 11, label: "Operação", Component: Scene11 },
@@ -1088,7 +961,7 @@ export const scenes = [
   { id: 22, label: "TikTok", Component: Scene22 },
   { id: 23, label: "Escala", Component: Scene23 },
   { id: 24, label: "IA", Component: Scene24 },
-  { id: 25, label: "Inteligência Unike", Component: Scene25 },
+  { id: 25, label: "Inteligência Unike", Component: Scene25, stages: 4 },
   { id: 27, label: "Potencializa", Component: Scene27 },
   { id: 28, label: "Informação", Component: Scene28 },
   { id: 29, label: "Decidir melhor", Component: Scene29 },
