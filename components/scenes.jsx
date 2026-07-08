@@ -700,44 +700,6 @@ function MediaAsset({ asset, label = "" }) {
   );
 }
 
-function Scene26() {
-  return (
-    <SceneShell className="crmScene">
-      <div className="screenRail">
-        <motion.div
-          className="crmScreen largeScreen printPlaceholder"
-          initial={{ opacity: 0, x: -34, filter: "blur(14px)" }}
-          animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.75, ease }}
-        >
-          <div className="windowBar" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </div>
-          <MediaAsset asset={presentationAssets.scene26.large} />
-        </motion.div>
-        <motion.div
-          className="crmScreen mediumScreen printPlaceholder"
-          initial={{ opacity: 0, y: 34, filter: "blur(14px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.75, delay: 0.18, ease }}
-        >
-          <MediaAsset asset={presentationAssets.scene26.medium} />
-        </motion.div>
-        <motion.div
-          className="crmScreen smallScreen printPlaceholder"
-          initial={{ opacity: 0, x: 34, filter: "blur(14px)" }}
-          animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.75, delay: 0.32, ease }}
-        >
-          <MediaAsset asset={presentationAssets.scene26.small} />
-        </motion.div>
-      </div>
-    </SceneShell>
-  );
-}
-
 function Scene27() {
   return (
     <SceneShell className="center stacked cyanScene">
@@ -845,10 +807,9 @@ export const scenes = [
   { id: 20, label: "Escala", Component: Scene23 },
   { id: 21, label: "IA", Component: Scene24 },
   { id: 22, label: "Inteligência Unike", Component: Scene25, stages: 4 },
-  { id: 23, label: "CRM", Component: Scene26 },
-  { id: 24, label: "Potencializa", Component: Scene27 },
-  { id: 25, label: "Informação", Component: Scene28 },
-  { id: 26, label: "Desenvolver", Component: Scene31 },
-  { id: 27, label: "Ferramenta", Component: Scene32 },
-  { id: 28, label: "UNIKE", Component: Scene33, stages: 1 }
+  { id: 23, label: "Potencializa", Component: Scene27 },
+  { id: 24, label: "Informação", Component: Scene28 },
+  { id: 25, label: "Desenvolver", Component: Scene31 },
+  { id: 26, label: "Ferramenta", Component: Scene32 },
+  { id: 27, label: "UNIKE", Component: Scene33, stages: 1 }
 ];

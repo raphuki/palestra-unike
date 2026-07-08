@@ -35,11 +35,6 @@ export const presentationAssets = {
       }
     }
   },
-  scene26: {
-    large: null,
-    medium: null,
-    small: null
-  },
   final: {
     logo: {
       src: "prints/unike-logo-glow.png",
