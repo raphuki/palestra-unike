@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palestra Unike</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .scene {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6vw;
+      background: radial-gradient(circle at top, #151515 0%, #000 55%);
+    }
+
+    .scene.active {
+      display: flex;
+      animation: fade .7s ease;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: scale(1.02); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .logo {
+      font-size: clamp(44px, 9vw, 110px);
+      font-weight: 800;
+      letter-spacing: -0.06em;
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 110px);
+      line-height: .95;
+      margin: 0;
+      letter-spacing: -0.07em;
+    }
+
+    p {
+      font-size: clamp(22px, 3vw, 42px);
+      line-height: 1.25;
+      color: #cfcfcf;
+      margin: 24px 0 0;
+    }
+
+    .big {
+      font-size: clamp(90px, 22vw, 260px);
+      font-weight: 850;
+      letter-spacing: -0.08em;
+    }
+
+    .muted {
+      color: #8d8d8d;
+    }
+
+    .timeline {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 50px;
+    }
+
+    .box {
+      border: 1px solid #333;
+      border-radius: 18px;
+      padding: 22px 28px;
+      background: rgba(255,255,255,.05);
+      font-size: clamp(18px, 2vw, 30px);
+    }
+
+    .arrow {
+      color: #777;
+      font-size: 36px;
+    }
+
+    .hint {
+      position: fixed;
+      bottom: 18px;
+      right: 22px;
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="scene active">
+    <div>
+      <div class="logo">UNIKE</div>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div>
+      <h1>Hoje não vamos falar sobre dados.</h1>
+      <p>Vamos falar sobre decisões.</p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div>
+      <h1>Toda grande decisão...</h1>
+      <p>deixa um rastro.</p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div>
+      <h1>Todo rastro...</h1>
+      <p>vira um dado.</p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div>
+      <h1>Dados não mudam empresas.</h1>
+      <p>Decisões mudam.</p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div>
+      <div class="big">74%</div>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div>
+      <div class="big">74%</div>
+      <p>das mensagens enviadas para recrutamento<br>não receberam resposta.</p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div>
+      <h1>Por quê?</h1>
+      <p class="muted">Essa pergunta mudou a estratégia.</p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div>
+      <h1>De 74% para 55%</h1>
+      <div class="timeline">
+        <div class="box">Mensagem A</div>
+        <div class="arrow">→</div>
+        <div class="box">Teste</div>
+        <div class="arrow">→</div>
+        <div class="box">Nova abordagem</div>
+        <div class="arrow">→</div>
+        <div class="box">Resultado</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div>
+      <h1>Esse era apenas um processo.</h1>
+      <p>E quando olhamos para toda a operação?</p>
+    </div>
+  </section>
+
+  <div class="hint">Use ← → ou toque na tela</div>
+
+  <script>
+    const scenes = document.querySelectorAll('.scene');
+    let current = 0;
+
+    function showScene(index) {
+      scenes[current].classList.remove('active');
+      current = Math.max(0, Math.min(index, scenes.length - 1));
+      scenes[current].classList.add('active');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') showScene(current + 1);
+      if (e.key === 'ArrowLeft') showScene(current - 1);
+    });
+
+    document.addEventListener('click', () => showScene(current + 1));
+  </script>
+</body>
+</html>
