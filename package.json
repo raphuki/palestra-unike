@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": ">=18.18.0"
+    "node": ">=22.12.0 <23"
   },
   "scripts": {
     "dev": "next dev",
@@ -11,7 +11,7 @@
     "build:offline": "UNIKE_OFFLINE=1 next build && node scripts/prepare-offline.mjs",
     "package": "npm run package:offline",
     "package:offline": "node scripts/package-offline-app.mjs",
-    "start": "next start"
+    "start": "node scripts/start-production.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.18.2",

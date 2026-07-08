@@ -12,7 +12,7 @@ Apresentacao web premium em Next.js para a palestra da Unike sobre dados, IA e g
 
 ## Requisitos
 
-- Node.js 18.18+ 
+- Node.js 22.12+ 
 - npm
 
 ## Desenvolvimento local
@@ -51,26 +51,30 @@ Saidas esperadas:
 - `dist/unike-apresentacao-offline-macos-arm64.zip`
 - `dist/PLANO_B_OFFLINE.txt`
 
-## Deploy com GitHub + Vercel
+## Deploy com GitHub + Render
 
-Este projeto ja esta pronto para deploy padrao na Vercel.
+Este projeto esta preparado para deploy como Web Service no Render.
 
 ### Configuracao esperada
 
-- Framework: `Next.js`
-- Install Command: `npm install`
+- Tipo do servico: `Web Service`
+- Runtime: `Node`
+- Root Directory: `.`
 - Build Command: `npm run build`
-- Output: padrao do Next.js
+- Start Command: `npm run start`
+- Node Version: `22`
 - Variaveis de ambiente: nenhuma obrigatoria para a versao online atual
-- Importante: nao definir `UNIKE_OFFLINE=1` na Vercel
+- Health Check Path: `/`
+- Auto Deploy: `On Commit`
 
 ### Fluxo recomendado
 
 1. Suba todo o repositorio para o GitHub.
 2. Garanta que a pasta `public/prints/` esteja versionada junto com o codigo.
-3. Importe o repositorio na Vercel.
-4. Mantenha a deteccao automatica de framework como `Next.js`.
-5. Publique.
+3. Importe o repositorio no Render.
+4. Crie um `Web Service` apontando para a branch principal.
+5. Use as configuracoes acima ou sincronize o `render.yaml`.
+6. Publique.
 
 ## Observacoes
 
