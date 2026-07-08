@@ -6,3 +6,5 @@ dist
 !.env.example
 *.log
 .DS_Store
+outputs/*.inspect.ndjson
+outputs/unike-apresentacao-offline/

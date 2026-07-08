@@ -1,0 +1,91 @@
+DESCRITIVO DA APRESENTAÇÃO UNIKE
+
+Versão offline em PowerPoint baseada na apresentação web atual.
+Observação: os IDs originais das cenas foram preservados no conteúdo, mas o PPT usa uma sequência contínua de 29 lâminas.
+
+1. UNIKE
+   Tela minimalista com fundo preto absoluto. A palavra UNIKE aparece centralizada em branco, com glow muito sutil.
+
+2. Entrada Raphael / DADOS
+   Entrada Raphael. A ideia visual é a transformação de UNIKE em DADOS. Texto principal: DADOS não mudam empresas. Depois entra: Decisões mudam. Decisões recebe destaque em dourado.
+
+3. 74%
+   Número 74% grande, centralizado, no mesmo lugar da cena seguinte. No clique da versão web entra o subtítulo: Sem contexto, isso não significa nada.
+
+4. 74% com contexto
+   Número 74% permanece no mesmo lugar. Subtítulo: das mensagens enviadas para recrutamento não receberam resposta. O objetivo é mostrar que o número não mudou, apenas ganhou contexto.
+
+5. A pergunta que mudou tudo
+   Título: A pergunta que mudou tudo. Subtítulo gigante: Por quê? O destaque visual fica na pergunta.
+
+6. O que fizemos
+   Título: O que fizemos. Etapas: Analisamos os dados; Mensagem, Algoritmo e Perfis; Padrões; Treinamentos. Na web, cada etapa aparece após clique.
+
+7. 74% -> 55%
+   Visual de redução de 74% para 55%. Subtítulo: Os dados não fizeram o trabalho. Pessoas fizeram. Mas os dados mostraram o caminho.
+
+8. Esse era apenas um processo.
+   Título: Esse era apenas um processo. Subtítulo: E quando olhamos para toda a operação?
+
+9. O caos dos dados
+   Primeiro aparece a frase O caos dos dados. Depois, na web, centenas de palavras relacionadas a dados operacionais, humanos e estratégicos caem e se sobrepõem. Palavras principais em destaque: Diamantes, Horas, Campanhas, Incentivos, Humor, Eventos, Guifters.
+
+10. O problema nunca foi ter dados.
+    Título: O problema nunca foi ter dados. Subtítulo: O problema sempre foi transformar dados em decisões.
+
+11. Dado não é só número.
+    Título: Dado não é só número. Subtítulo: Dado é qualquer informação que ajuda a decidir melhor.
+
+12. Os 3 tipos de dados que olhamos
+    Três grandes cards: Operacionais, com Diamantes, Horas e Ganhos; Humanos, com Comportamento, Motivação e Relacionamento; Estratégicos, com Tabelas, Campanhas e Tendências.
+
+13. Na Unike, dados também são pessoas.
+    Título: Na Unike, dados também são pessoas. Subtítulo em linhas: Um creator que responde menos. Um colaborador sobrecarregado. Uma mudança de comportamento. Tudo isso é informação.
+
+14. E dados também são Estratégicos.
+    Título: E dados também são Estratégicos. Subtítulo: Quando o TikTok muda uma tabela, uma missão ou uma campanha... ...ele está sinalizando oportunidades.
+
+15. A filosofia da Unike
+    Título: A filosofia da Unike. Subtítulo: Não queremos transformar Creator Managers em analistas profissionais. Queremos fazer os dados conversarem com quem entende de pessoas.
+
+16. Entrada Andressa / Decisões
+    Entrada Andressa. Título: Decisões. Subtítulo: Como essa filosofia acontece na prática. Visual mais humano e quente.
+
+17. Na prática, dados ajudam a enxergar antes.
+    Título: Na prática, dados ajudam a enxergar antes. Subtítulo: Quem precisa de ajuda. Quem está crescendo. Quem está em risco. Quem merece mais atenção. O que precisa mudar?
+
+18. Não analisamos apenas creators.
+    Título: Não analisamos apenas creators. Subtítulo: Também analisamos colaboradores, processos e sinais da operação.
+
+19. Ler o TikTok antes dos outros.
+    Título: Ler o TikTok antes dos outros. Subtítulo: Cada nova tabela, missão ou campanha mostra o que a plataforma está incentivando. Aprender a interpretar esses sinais cria oportunidades.
+
+20. O desafio é a escala.
+    Título: O desafio é a escala. Subtítulo: Quanto maior a operação... ...mais difícil fica transformar informação em ação rapidamente.
+
+21. Foi aí que a IA entrou.
+    Título: Foi aí que a IA entrou. Subtítulo: Não para substituir pessoas. Para acelerar decisões.
+
+22. Inteligencia Unike
+    Título: Inteligência Unike. Subtítulo: Como usamos IA hoje a nosso favor. Visual: uma janela grande com o vídeo/print do CRM Unike e menu lateral com CRM Unike, ChatGPT, Ferramentas Internas, Automações e Análise de Dados. Na web, o vídeo toca uma vez e depois aparece o print do CRM.
+
+23. IA não faz o trabalho.
+    Título: IA não faz o trabalho. Subtítulo: Ela potencializa quem sabe decidir.
+
+24. Menos tempo procurando informação.
+    Título: Menos tempo procurando informação. Subtítulo: Mais tempo decidindo o que fazer com ela. A palavra tempo recebe destaque.
+
+25. O que isso muda para vocês?
+    Título: O que isso muda para vocês? Subtítulo: Quando uma operação já movimenta milhões de diamantes... ...a diferença não está apenas em trabalhar mais. Está em decidir melhor.
+
+26. TEMPO
+    Primeiro: Automatizar a coleta e análise de dados traz TEMPO. Depois, na web, o texto some e a palavra TEMPO se reconstrói como partículas/areia. Subtítulo: Tempo para olhar onde realmente importa. Creators. Colaboradores. Oportunidades. Mudanças do mercado. Tomadas de decisão.
+
+27. Tempo para desenvolver creators.
+    Título: Tempo para desenvolver creators. Subtítulo: Tempo para apoiar colaboradores. Tempo para tomar decisões melhores.
+
+28. A maior ferramenta da Unike
+    Título: A maior ferramenta da Unike. Subtítulo: Nossa experiência... aliada à IA... aos dados... e principalmente às pessoas.
+
+29. UNIKE
+    Fechamento. Primeiro aparece: Porque, no fim, tecnologia evolui. Os dados mudam. O mercado muda. Mas o futuro deve ser construído pelas pessoas que escolhem tomar decisões melhores. Depois a frase desaparece e sobra a logo UNIKE grande, centralizada, com o slogan próximo: Ser único é o que nos conecta.
