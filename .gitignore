@@ -1,4 +1,5 @@
 .next
+.offline-build
 node_modules
 out
 dist

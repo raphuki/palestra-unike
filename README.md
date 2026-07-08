@@ -29,6 +29,28 @@ npm run build
 npm run start
 ```
 
+## Plano B offline oficial
+
+Para gerar a versao offline completa, com a mesma experiencia visual e funcional da versao online, use:
+
+```bash
+npm run package:offline
+```
+
+Esse comando:
+
+1. gera o export offline da apresentacao;
+2. embute todos os assets localmente;
+3. empacota um app offline para Windows x64;
+4. empacota um app offline para macOS Apple Silicon;
+5. grava os artefatos finais em `dist/`.
+
+Saidas esperadas:
+
+- `dist/unike-apresentacao-offline-win-x64.zip`
+- `dist/unike-apresentacao-offline-macos-arm64.zip`
+- `dist/PLANO_B_OFFLINE.txt`
+
 ## Deploy com GitHub + Vercel
 
 Este projeto ja esta pronto para deploy padrao na Vercel.
@@ -53,5 +75,6 @@ Este projeto ja esta pronto para deploy padrao na Vercel.
 ## Observacoes
 
 - A experiencia online principal usa o build normal do Next.js.
-- O modo offline usa o script `npm run build:offline`, que aplica configuracao separada apenas para exportacao estatica.
+- O script `npm run build:offline` continua disponivel apenas como exportacao estatica auxiliar.
+- O pacote oficial para evento sem internet e `npm run package:offline`.
 - Videos, imagens e assets da apresentacao sao servidos diretamente da pasta `public/`.
