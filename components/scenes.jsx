@@ -2,7 +2,7 @@
 
 import { AnimatePresence, animate, motion, useMotionValue, useTransform } from "framer-motion";
 import { BrainCircuit, Database, UsersRound } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { stormWords as premiumStormWords } from "./chaos-words";
 import { presentationAssets } from "./presentation-assets";
 
@@ -521,15 +521,6 @@ function Scene23() {
   );
 }
 
-function Scene24() {
-  return (
-    <SceneShell className="center stacked aiScene">
-      <Title>Foi aí que a IA entrou.</Title>
-      <LineGroup delay={0.2} lines={["Não para substituir pessoas.", "Para acelerar decisões."]} />
-    </SceneShell>
-  );
-}
-
 function Scene27() {
   return (
     <SceneShell className="center stacked cyanScene">
@@ -560,107 +551,6 @@ function Scene29() {
           "Está em decidir melhor."
         ]}
       />
-    </SceneShell>
-  );
-}
-
-const letterMaps = {
-  T: ["11111", "00100", "00100", "00100", "00100", "00100", "00100"],
-  E: ["11111", "10000", "10000", "11110", "10000", "10000", "11111"],
-  M: ["10001", "11011", "10101", "10101", "10001", "10001", "10001"],
-  P: ["11110", "10001", "10001", "11110", "10000", "10000", "10000"],
-  O: ["01110", "10001", "10001", "10001", "10001", "10001", "01110"]
-};
-
-function makeTempoParticles() {
-  const letters = "TEMPO";
-  const points = [];
-  letters.split("").forEach((letter, letterIndex) => {
-    const grid = letterMaps[letter];
-    grid.forEach((row, y) => {
-      row.split("").forEach((cell, x) => {
-        if (cell !== "1") return;
-        for (let dot = 0; dot < 3; dot += 1) {
-          const jitterX = ((dot % 3) - 1) * 0.62;
-          const jitterY = (dot - 1) * 0.42;
-          points.push({
-            id: `${letter}-${letterIndex}-${x}-${y}-${dot}`,
-            left: 8 + letterIndex * 18 + x * 2.45 + jitterX,
-            top: 19 + y * 8.5 + jitterY,
-            scatterX: Math.sin(points.length * 2.71) * 420,
-            scatterY: Math.cos(points.length * 1.93) * 240
-          });
-        }
-      });
-    });
-  });
-  return points;
-}
-
-function TempoParticles() {
-  const particles = useMemo(makeTempoParticles, []);
-
-  return (
-    <div className="tempoParticles" aria-label="TEMPO">
-      {particles.map((particle, index) => (
-        <motion.span
-          key={particle.id}
-          className="tempoParticle"
-          style={{ left: `${particle.left}%`, top: `${particle.top}%` }}
-          initial={{
-            x: particle.scatterX,
-            y: particle.scatterY,
-            opacity: 0,
-            scale: 0.25
-          }}
-          animate={{ x: 0, y: 0, opacity: 0.82, scale: 1 }}
-          transition={{ duration: 1.65, delay: 0.05 + (index % 32) * 0.018, ease }}
-        />
-      ))}
-      <motion.div
-        className="tempoFinal"
-        initial={{ opacity: 0, filter: "blur(16px)" }}
-        animate={{ opacity: 1, filter: "blur(0px)" }}
-        transition={{ duration: 0.85, delay: 1.55, ease }}
-      >
-        TEMPO
-      </motion.div>
-    </div>
-  );
-}
-
-function Scene30({ stage }) {
-  return (
-    <SceneShell className="center stacked tempoScene">
-      {stage === 0 ? (
-        <>
-          <Title>Automatizar a coleta e análise de dados traz</Title>
-          <motion.div
-            className="tempoWord"
-            initial={{ opacity: 0, scale: 0.94, filter: "blur(16px)" }}
-            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ duration: 0.9, delay: 0.24, ease }}
-          >
-            TEMPO
-          </motion.div>
-        </>
-      ) : (
-        <>
-          <TempoParticles />
-          <LineGroup
-            delay={2.05}
-            className="tempoSubtitle"
-            lines={[
-              "Tempo para olhar onde realmente importa.",
-              "Creators.",
-              "Colaboradores.",
-              "Oportunidades.",
-              "Mudanças do mercado.",
-              "Tomadas de decisão."
-            ]}
-          />
-        </>
-      )}
     </SceneShell>
   );
 }
@@ -752,11 +642,9 @@ export const scenes = [
   { id: 21, label: "Operação", Component: Scene21 },
   { id: 22, label: "TikTok", Component: Scene22 },
   { id: 23, label: "Escala", Component: Scene23 },
-  { id: 24, label: "IA", Component: Scene24 },
   { id: 27, label: "Potencializa", Component: Scene27 },
   { id: 28, label: "Informação", Component: Scene28 },
   { id: 29, label: "Decidir melhor", Component: Scene29 },
-  { id: 30, label: "TEMPO", Component: Scene30, stages: 1 },
   { id: 31, label: "Desenvolver", Component: Scene31 },
   { id: 32, label: "Ferramenta", Component: Scene32 },
   { id: 33, label: "UNIKE", Component: Scene33, stages: 1 }
