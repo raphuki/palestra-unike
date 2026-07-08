@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:offline": "UNIKE_OFFLINE=1 next build && node scripts/prepare-offline.mjs",
     "start": "next start"
   },
   "dependencies": {

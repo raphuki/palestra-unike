@@ -3,8 +3,8 @@ export const presentationAssets = {
     tools: {
       crm: {
         type: "videoThenImage",
-        src: "/prints/crm-opening-video.mp4",
-        posterSrc: "/prints/crm-dashboard-print.png",
+        src: "prints/crm-opening-video.mp4",
+        posterSrc: "prints/crm-dashboard-print.png",
         alt: "Abertura do CRM Unike"
       },
       chatgpt: null,
@@ -20,7 +20,7 @@ export const presentationAssets = {
   },
   final: {
     logo: {
-      src: "/prints/unike-logo-glow.png",
+      src: "prints/unike-logo-glow.png",
       alt: "UNIKE"
     }
   }
