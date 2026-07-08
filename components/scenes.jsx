@@ -2,7 +2,7 @@
 
 import { AnimatePresence, animate, motion, useMotionValue, useTransform } from "framer-motion";
 import { Bot, BrainCircuit, Database, Monitor, Sparkles, UsersRound, Wrench, Zap } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { stormWords as premiumStormWords } from "./chaos-words";
 import { presentationAssets } from "./presentation-assets";
 
@@ -756,58 +756,6 @@ function Scene28() {
   );
 }
 
-function Scene29() {
-  return (
-    <SceneShell className="center stacked warmScene">
-      <Title>O que isso muda para vocês?</Title>
-      <LineGroup
-        delay={0.2}
-        lines={[
-          "Quando uma operação já movimenta milhões de diamantes...",
-          "...a diferença não está apenas em trabalhar mais.",
-          "Está em decidir melhor."
-        ]}
-      />
-    </SceneShell>
-  );
-}
-
-function Scene30({ stage }) {
-  return (
-    <SceneShell className="center stacked tempoScene">
-      {stage === 0 ? (
-        <>
-          <Title>Automatizar a coleta e análise de dados traz</Title>
-          <motion.div
-            className="tempoWord"
-            initial={{ opacity: 0, scale: 0.94, filter: "blur(16px)" }}
-            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ duration: 0.9, delay: 0.24, ease }}
-          >
-            TEMPO
-          </motion.div>
-        </>
-      ) : (
-        <>
-          <TempoParticles />
-          <LineGroup
-            delay={2.05}
-            className="tempoSubtitle"
-            lines={[
-              "Tempo para olhar onde realmente importa.",
-              "Creators.",
-              "Colaboradores.",
-              "Oportunidades.",
-              "Mudanças do mercado.",
-              "Tomadas de decisão."
-            ]}
-          />
-        </>
-      )}
-    </SceneShell>
-  );
-}
-
 function Scene31() {
   return (
     <SceneShell className="center stacked purpleScene">
@@ -900,9 +848,7 @@ export const scenes = [
   { id: 23, label: "CRM", Component: Scene26 },
   { id: 24, label: "Potencializa", Component: Scene27 },
   { id: 25, label: "Informação", Component: Scene28 },
-  { id: 26, label: "Decidir melhor", Component: Scene29 },
-  { id: 27, label: "TEMPO", Component: Scene30, stages: 1 },
-  { id: 28, label: "Desenvolver", Component: Scene31 },
-  { id: 29, label: "Ferramenta", Component: Scene32 },
-  { id: 30, label: "UNIKE", Component: Scene33, stages: 1 }
+  { id: 26, label: "Desenvolver", Component: Scene31 },
+  { id: 27, label: "Ferramenta", Component: Scene32 },
+  { id: 28, label: "UNIKE", Component: Scene33, stages: 1 }
 ];
